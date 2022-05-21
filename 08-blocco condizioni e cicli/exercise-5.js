@@ -1,14 +1,27 @@
 function calculateAverageAge(persons) {
-  // ...
-  const mapping = persons.map((ageSum) => {
-    return ageSum.age;
-  })
+// ...
+ const mapping = persons.map((ageSum) => {
+ return ageSum.age;
+ })
 
-  const sum = mapping.reduce((total, amount) => {
-    return total + amount;
-  })
+const sum = mapping.reduce((total, amount) => {
+  return total + amount;
+})
 
-  return sum / persons.length
+return sum / persons.length
+ }
+
+//ESERCIZIO SVOLTO SEGUENDO LA TRACCIA ALLA LETTERA  
+
+function calculateWithFor(persons) {
+  let media;
+  let sum = 0;
+  for(i=0;i<persons.length;i++){
+    sum = sum + persons[i].age;
+  }
+
+  media = sum/persons.length;
+  return media;
 }
 
 const persons = [
@@ -25,5 +38,7 @@ const persons = [
 ];
 
 const averageAge = calculateAverageAge(persons);
+const withFor = calculateWithFor(persons);
 console.log(persons);
 console.log(averageAge);
+console.log (withFor);
