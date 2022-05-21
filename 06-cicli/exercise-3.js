@@ -18,6 +18,27 @@ const persons = [
   { name: 'Alice', age: 28 }
 ];
 
+//ESERCIZIO SVOLTO SEGUENDO LA TRACCIA ALLA LETTERA 
+
+function agefilter(persons){
+const minorenni = [];
+let calc; 
+for (i = 0 ; i<persons.length; i++){
+  calc = persons[i].age
+  if (calc <= 18){
+    minorenni.push(persons[i]);
+  }
+}
+return minorenni
+}
+
+
+
 const adults = adultFilter(persons);
+const age18 = agefilter(persons)
 console.log(persons);
 console.log(adults);
+console.log(age18)
+
+
+

@@ -6,6 +6,19 @@ function nicknameMap(persons) {
   return composerNikName
 }
 
+//ESERCIZIO SVOLTO SEGUENDO LA TRACCIA ALLA LETTERA 
+
+function nicknameWithFor(persons) {
+  const withFor= []
+  for (let i = 0; i < persons.length; i++) {
+    const name = persons[i].name;
+    const age = persons[i].age;
+    let nikname = `${name}-${age}`;
+    withFor.push(nikname);
+  }
+  return withFor;
+}
+
 const persons = [
   { name: 'Paul', age: 16 },
   { name: 'George', age: 17 },
@@ -20,5 +33,7 @@ const persons = [
 ];
 
 const nicknames = nicknameMap(persons);
+const nickWithFor = nicknameWithFor(persons);
 console.log(persons);
 console.log(nicknames);
+console.log (nickWithFor)
