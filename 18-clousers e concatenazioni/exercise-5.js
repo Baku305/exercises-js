@@ -2,6 +2,7 @@ function memoize(fn) {
   let cache = {
   };
   // ...
+  var fromCache = 'from cache'
   return function (n) {
     if (n in cache){
       return (`${cache[n]}`)
