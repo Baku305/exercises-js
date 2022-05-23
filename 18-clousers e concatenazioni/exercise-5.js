@@ -4,8 +4,7 @@ function memoize(fn) {
   // ...
   return function (n) {
     if (n in cache){
-      console.log ('from cache')
-      return cache[n]
+      return (`${cache[n]}`)
     }else{
       let res = fn(n)
       cache[n] = res;
@@ -29,6 +28,9 @@ function factorial(x) {
 }
 
 factorial = memoize(factorial);
+console.log(factorial(2));
+console.log(factorial(4));
 console.log(factorial(10));
 console.log(factorial(6));
 console.log(factorial(5));
+
