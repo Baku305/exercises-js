@@ -3,16 +3,14 @@ function memoize(fn) {
   };
   // ...
   return function (n) {
-    const res = fn(n);
-    cache.result = 0;
-    for (let key in cache) {
-      if (key === res) {
-        return(`ciao ${res}`);
-      } else {
-        cache.result = `${res}`;
-      }
+    if (n in cache){
+      console.log ('from cache')
+      return cache[n]
+    }else{
+      let res = fn(n)
+      cache[n] = res;
+      return res
     }
-    return cache.result
   };
 
   //   return function() {
@@ -34,5 +32,3 @@ factorial = memoize(factorial);
 console.log(factorial(10));
 console.log(factorial(6));
 console.log(factorial(5));
-console.log(factorial(5));
-
