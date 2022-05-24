@@ -1,8 +1,6 @@
 function greet(greeting) {
   // ...
-  return function (naming){
-    return `${greeting} ${naming}`
-  }
+  return (naming) => `${greeting} ${naming}`
 }
 
 const greetWithHello = greet('Hello');

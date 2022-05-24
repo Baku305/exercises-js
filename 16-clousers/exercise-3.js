@@ -2,8 +2,8 @@ function createStore() {
   // ...
   const store = []
   
-  return function (newProduct){
-    if (newProduct !== undefined){
+  return (newProduct) => {
+    if (newProduct !== undefined) {
       store.push(newProduct);
     }
     return store;
