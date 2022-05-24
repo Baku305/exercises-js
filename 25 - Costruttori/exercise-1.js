@@ -1,65 +1,68 @@
-class PersonClass {
-  //   // ...
-  name = "";
-  surname = "";
-
-  constructor(firstName, lastName) {
-    this.name = firstName;
-    this.surname = lastName;
-  }
-
-  get firstName() {
-    this.name;
-  }
-
-  set firstName(value) {
-    this.name = value;
-  }
-
-  get lastName() {
-    this.surname;
-  }
-
-  set lastName(value) {
-    this.surname = value;
-  }
-
-  fullName() {
-    return `${this.name} ${this.surname}`;
-  }
-}
-
-
-//--------------------------------------------------------------------------
-
-function Person(firstName, lastName) {
+const person = {
   // ...
-  this.name = firstName;
-  this.surname = lastName;
+  firstName : '',
+  lastName : '',
 
-  this.fullName = () =>  `${this.name} ${this.surname}`;
+  get getName (){
+    this.firstName
+  },
+
+  set changeName (value){
+    this.firstName = value
+  },
+
+  get getSurname (){
+    this.lastName
+  },
+
+  set changeSurname (value){
+    this.lastName = value
+  },
+
+  fullName () {
+    return `${this.firstName} ${this.lastName}`;
+  },
 }
 
-console.log('-----------------with constructor------------');
+// // getting property
+// Object.defineProperty(person, "getName", {
+//   get : function () {
+//       return this.firstName;
+//   }
+// });
 
-let john = new Person("john", "doe");
+// // setting property
+// Object.defineProperty(person, "changeName", {
+//   set : function (value) {
+//       this.firstName = value;
+//   }
+// });
+
+// // getting property
+// Object.defineProperty(person, "getSurname", {
+//   get : function () {
+//       return this.lastName;
+//   }
+// });
+
+// // setting property
+// Object.defineProperty(person, "changeSurname", {
+//   set : function (value) {
+//       this.lastName = value;
+//   }
+// });
+
+
+const john = Object.create(person);
+john.changeName = 'john'
+john.changeSurname = 'doe'
+
+const simon = Object.create(person)
+simon.changeName = 'simon'
+simon.changeSurname = 'collins'
+
+
 console.log(john);
-
-let simon = new Person("Simon", "collins");
-console.log(simon);
-
 console.log(john.fullName()); // John Doe
+console.log(simon);
 console.log(simon.fullName()); // Simon Collins
-
-
-console.log("-------------------with class-----------------");
-
-let giovanni = new PersonClass("Giovanni", "domillo");
-console.log(giovanni);
-
-let simone = new PersonClass("Simone", "collinella");
-console.log(simone);
-
-
-console.log(giovanni.fullName()); // John Doe
-console.log(simone.fullName()); // Simon Collins

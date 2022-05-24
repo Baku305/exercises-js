@@ -9,7 +9,6 @@ function memoize(fn) {
       cache[n]  = fn(n);
       return cache[n];
     }
-
   };
 
 
