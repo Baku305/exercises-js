@@ -1,44 +1,68 @@
-class Person {
-  // ... 
-  name = '';
-  surname = '';
+const person = {
+  // ...
+  firstName : '',
+  lastName : '',
 
-  constructor (firstName, lastName){
-    this.name= firstName;
-    this.surname= lastName;
-  }
+  get getName (){
+    this.firstName
+  },
 
-  get firstName (){
-    this.name;
-  };
+  set changeName (value){
+    this.firstName = value
+  },
 
-  set firstName (value){
-    this.name = value;
-  };
+  get getSurname (){
+    this.lastName
+  },
 
-  get lastName (){
-  this.surname;
-  };
+  set changeSurname (value){
+    this.lastName = value
+  },
 
-  set lastName(value){
-    this.surname = value;
-  };
-
-  fullName(){
-    return `${this.name} ${this.surname}`
-  }
+  fullName () {
+    return `${this.firstName} ${this.lastName}`;
+  },
 }
 
-let john =  new Person ('john','doe'); 
+// // getting property
+// Object.defineProperty(person, "getName", {
+//   get : function () {
+//       return this.firstName;
+//   }
+// });
+
+// // setting property
+// Object.defineProperty(person, "changeName", {
+//   set : function (value) {
+//       this.firstName = value;
+//   }
+// });
+
+// // getting property
+// Object.defineProperty(person, "getSurname", {
+//   get : function () {
+//       return this.lastName;
+//   }
+// });
+
+// // setting property
+// Object.defineProperty(person, "changeSurname", {
+//   set : function (value) {
+//       this.lastName = value;
+//   }
+// });
+
+
+const john = Object.create(person);
+john.changeName = 'john'
+john.changeSurname = 'doe'
+
+const simon = Object.create(person)
+simon.changeName = 'simon'
+simon.changeSurname = 'collins'
+
+
 console.log(john);
-
-
-let simon = new Person('simon','collins');
-console.log(simon);
-
-
-
-
 console.log(john.fullName()); // John Doe
+console.log(simon);
 console.log(simon.fullName()); // Simon Collins
-

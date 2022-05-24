@@ -1,51 +1,47 @@
-function sum(a, b) {
-  return `(${a} + ${b})`;
-}
+const sum = (a, b) => `(${a} + ${b})`;
 
 
-function subtract(a, b) {
-  return `(${a} - ${b})`;
-}
+
+const subtract = (a, b) => `(${a} - ${b})`;
 
 
-function multiply(a, b) {
-  return `${a} * ${b}`;
-}
+
+const multiply = (a, b) => `${a} * ${b}`;
 
 
-function divide(a, b) {
-  return `${a} / ${b}`;
-}
+
+const divide = (a, b) =>  `${a} / ${b}`;
+
 
 
 function log(a, b, c) {
-  value = (divide(subtract((multiply(sum(a,b),sum(c,a))), a),c)); 
+  value = (divide(subtract((multiply(sum(a, b), sum(c, a))), a), c));
   return console.log(value);
-}
+} 
+  
+
 
 
 log('2', '4', '5')
 
                                         //OPERAZIONE MATEMATICA
 
-function sum2(a, b) {
-  return a + b;
-}
+console.log('--------------Math Operation---------------');
+
+const sum2 = (a, b) => a + b;
 
 
-function subtract2(a, b) {
-  return a - b;
-}
+
+const subtract2 = (a, b) => a - b;
 
 
-function multiply2(a, b) {
-  return a * b;
-}
+
+const multiply2 = (a, b) => a * b;
 
 
-function divide2(a, b) {
-  return a / b;
-}
+
+const divide2 = (a, b) => a / b;
+
 
 
 function log2(a, b, c) {
