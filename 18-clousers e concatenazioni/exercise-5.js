@@ -6,9 +6,8 @@ function memoize(fn) {
     if (n in cache) {             
       return `${cache[n]}`;         
     } else {                      
-      let res = fn(n);
-      cache[n] = res;
-      return res;
+      cache[n]  = fn(n);
+      return cache[n];
     }
 
   };
