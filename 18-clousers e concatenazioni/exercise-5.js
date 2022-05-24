@@ -1,16 +1,26 @@
 function memoize(fn) {
   let cache = {
   };
-  // ...
-  return function (n) {
-    if (n in cache){
-      return `${cache[n]}`
-    }else{
-      let res = fn(n)
+  // ...    
+    /*if (n in cache) {             //con questa soluzione, aggiungendo le stringhe 'from cache' e 'calculated'
+      return `${cache[n]}`;       //mi restituiva NaN come valore di 'n', ed ioltre la variabile 'res' è inutile 
+    } else {                      //in questo caso. ragionandoci su ho risolto così
+      let res = fn(n);
       cache[n] = res;
-      return res
+      return res;
+    }*/
+
+  return (n) => {
+
+    if (n in cache) {
+      return `From cache ${n}`;
+    } else {
+      cache[n] = fn(n);
+      return `Calculated ${n}`
     }
+
   };
+
 
   //   return function() {
   //     var argsAsString = JSON.stringify(arguments);
@@ -27,9 +37,11 @@ function factorial(x) {
   return x * factorial(x - 1);
 }
 
+
 factorial = memoize(factorial);
 console.log(factorial(2));
 console.log(factorial(4));
 console.log(factorial(6));
 console.log(factorial(5));
 console.log(factorial(10));
+
