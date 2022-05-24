@@ -1,22 +1,14 @@
 function memoize(fn) {
   let cache = {
   };
-  // ...    
-    /*if (n in cache) {             //con questa soluzione, aggiungendo le stringhe 'from cache' e 'calculated'
-      return `${cache[n]}`;       //mi restituiva NaN come valore di 'n', ed ioltre la variabile 'res' è inutile 
-    } else {                      //in questo caso. ragionandoci su ho risolto così
+  // ...   
+  return (n) => { 
+    if (n in cache) {             
+      return `${cache[n]}`;         
+    } else {                      
       let res = fn(n);
       cache[n] = res;
       return res;
-    }*/
-
-  return (n) => {
-
-    if (n in cache) {
-      return `From cache ${n}`;
-    } else {
-      cache[n] = fn(n);
-      return `Calculated ${n}`
     }
 
   };
