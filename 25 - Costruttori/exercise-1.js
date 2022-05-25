@@ -3,19 +3,19 @@ const person = {
   firstName : '',
   lastName : '',
 
-  get getName (){
+  get firstNameProp (){
     this.firstName
   },
 
-  set changeName (value){
+  set firstNameProp (value){
     this.firstName = value
   },
 
-  get getSurname (){
+  get lastNameProp (){
     this.lastName
   },
 
-  set changeSurname (value){
+  set lastNameProp (value){
     this.lastName = value
   },
 
@@ -54,12 +54,12 @@ const person = {
 
 
 const john = Object.create(person);
-john.changeName = 'john'
-john.changeSurname = 'doe'
+john.firstNameProp = 'john'
+john.lastNameProp = 'doe'
 
 const simon = Object.create(person)
-simon.changeName = 'simon'
-simon.changeSurname = 'collins'
+simon.firstNameProp = 'simon'
+simon.lastNameProp = 'collins'
 
 
 console.log(john);
