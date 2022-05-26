@@ -23,7 +23,7 @@ const persons = [
 function agefilter(persons){
 const minorenni = [];
 let calc; 
-for (i = 0 ; i<persons.length; i++){
+for (i = 0 ; i < persons.length; i++){
   calc = persons[i].age
   if (calc <= 18){
     minorenni.push(persons[i]);

@@ -3,12 +3,12 @@ function firstUncompletedNote(notes) {
     var res = []
   notes.filter((note) => {
     note.todos.filter((obj) => {
-      if (obj.done == false) {
+      if (obj.done === false) {
         res.push(note);
       }
     });
   });
-  return res.slice(0,1)
+  return res[0]
 }
 
 const notes = [
