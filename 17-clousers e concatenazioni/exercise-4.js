@@ -1,8 +1,9 @@
 function calculate() {
   // ...
-  let result = 0;
-
   let calc = {
+    
+    result : 0,
+
     add: function (num){
       result += num;
       return this;
