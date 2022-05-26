@@ -1,28 +1,28 @@
 function calculate() {
   // ...
   let calc = {
-    
+
     result : 0,
 
     add: function (num){
-      result += num;
+      this.result += num;
       return this;
     }, 
     sub: function (num){
-      result -= num;
+      this.result -= num;
       return this;
     }, 
     multiply: function (num){
-      result *= num;
+      this.result *= num;
       return this;
     }, 
     divide: function (num){
-      result /= num;
+      this.result /= num;
       return this;
     }, 
     printResult: function (){
-      console.log(result);
-      return result;
+      console.log(this.result);
+      return this.result;
     }
   }
   return calc;
