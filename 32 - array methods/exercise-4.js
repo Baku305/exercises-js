@@ -50,7 +50,7 @@ const notes = [
       {
         id: 3,
         name: "Learn JavaScript",
-        done: true,
+        done: false,
       },
       {
         id: 4,
