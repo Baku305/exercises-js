@@ -6,7 +6,4 @@ const person = {
 
 // Print values of person using Object.values
 
-console.log (`${person.firstName}`)
-console.log (`${person.lastName}`)
-console.log (`${person.age}`)
-console.log (`${Object.values(person)}`)
+Object.values(person).forEach(prop => console.log(prop))
