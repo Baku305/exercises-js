@@ -1,9 +1,5 @@
 class Person {
   // ...
-  name = "";
-  surname = "";
-  age = "";
-
   constructor(firstName, lastName, ages) {
     this.name = firstName;
     this.surname = lastName;
@@ -41,7 +37,4 @@ class Person {
 
 const person = new Person('Mario', 'Rossi', 25);
 console.log(person.fullName);
-
-person.firstName = 'Maria';
-person.lastName = 'Verdi';
-console.log(person.fullName);
+console.log(person);
