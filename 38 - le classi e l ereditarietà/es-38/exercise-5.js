@@ -1,20 +1,20 @@
 class BankAccount {
-  #amount = 0;
+  amount = 0;
 
   constructor(initialAmount) {
-    this.#amount = initialAmount;
+    this.amount = initialAmount;
   }
 
   deposit(amount) {
-    this.#amount += amount;
+    this.amount += amount;
   }
 
   withdraw(amount) {
-    this.#amount -= amount;
+    this.amount -= amount;
   }
 
   view() {
-    console.log(this.#amount);
+    console.log(this.amount);
   }
 }
 

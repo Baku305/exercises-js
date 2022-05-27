@@ -1,10 +1,8 @@
 function calculateAverageAge(persons) {
   // ...
-  const mapping = persons.map((ageSum) => ageSum.age)
-   
-  const sum = mapping.reduce((total, amount) => total + amount)
-   
-  return sum / persons.length
+  const mapping = persons.map((ageSum) => ageSum.age).reduce((total,amount) => total + amount)
+  
+  return mapping / persons.length
     }
 
 const persons = [
