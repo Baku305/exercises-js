@@ -6,12 +6,6 @@ const person = {
 
 // Print values of person using Object.keys
 
-for (let prop in person){
-  console.log (prop, person[prop]);
-}
+Object.keys(person).forEach(prop => console.log(`${prop} : ${person[prop]}`))
 
-console.log (`${Object.keys(person)}`)
-console.log (`${Object.entries(person)}`)
-
-let objentries = Object.entries(person);
-console.log (Object.fromEntries(objentries));
+//
