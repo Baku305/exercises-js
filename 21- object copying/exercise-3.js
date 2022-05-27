@@ -12,10 +12,9 @@ const person1 = {
 // Argh! Nonostante abbia utilizzato Object.assign(), modificando la proprietà "address",
 // viene modificato il riferimento all'oggetto person1
 
-const person2 = JSON.parse(JSON.stringify(person1))
+const person2 = JSON.parse(JSON.stringify(person1));
 
 //ora non più
-
 person2.address.region = 'Lombardia';
 person2.address.city = 'Milan';
 
