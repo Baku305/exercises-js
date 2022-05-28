@@ -1,8 +1,9 @@
 function sum(n) {
     let [...m] = n;
     partial = 0;
-    for(let i = 0; i<m.length; i++);
+    for(let i = 0; i<m.length; i++){
     partial += m[i];
+    }
     return partial;
 }
 

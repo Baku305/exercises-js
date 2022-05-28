@@ -12,6 +12,7 @@ const person1 = {
 
 const person2 = JSON.stringify(person1);
 const newPerson = JSON.parse(person2)
+
 newPerson.address.city = 'Milan';
 
 console.log(person1);
