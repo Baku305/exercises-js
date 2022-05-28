@@ -1,6 +1,6 @@
 function isAdult(person) {
   if (age >= 18){
-    return age
+    return `${other.firstName} can get in`
   };
 }
 
