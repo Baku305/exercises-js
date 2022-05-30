@@ -6,25 +6,25 @@ class Person {
     this.age = ages;
   }
 
-  get firstName() {
-    this.name;
-  }
+  // get firstName() {
+  //   this.name;
+  // }
 
   set firstName(value) {
     this.name = value;
   }
 
-  get lastName() {
-    this.surname;
-  }
+  // get lastName() {
+  //   this.surname;
+  // }
 
   set lastName(value) {
     this.surname = value;
   }
 
-  get ages() {
-    this.age;
-  }
+  // get ages() {
+  //   this.age;
+  // }
 
   set ages(value) {
     this.age = value;
