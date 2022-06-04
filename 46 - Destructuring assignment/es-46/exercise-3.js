@@ -1,6 +1,8 @@
-function isAdult(person) {
+function isAdult(value) {
   if (age >= 18){
-    return `${other.firstName} can get in`
+    return `${value.firstName} can get in`
+  }else{
+    return `${value.firstName} can't get in`
   };
 }
 
@@ -11,7 +13,17 @@ const person = {
   age: 25
 };
 
-let {age,...other} = person;
+const person2 = {
+  id: 2,
+  firstName: 'Paolo',
+  lastName: 'Bianchi',
+  age: 17
+}
+
+var {age,...other} = person;
+
+var {age,...other} = person2;
 
 
-console.log(isAdult(person));
+
+console.log(isAdult(person2));
