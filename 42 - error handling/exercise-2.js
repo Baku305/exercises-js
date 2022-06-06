@@ -14,6 +14,7 @@ class BankAccount {
   }
 
   withdraw(amount) {
+    try {
     if (amount < 0) {
       throw new Error('The amount provided cannot be negative');
     }
@@ -21,8 +22,13 @@ class BankAccount {
     if (this.#amount < amount) {
       throw new Error('You cannot withdraw more than account balance');
     }
-
-    this.#amount -= amount;
+    else {
+     this.#amount -= amount;
+    }
+    } 
+    catch (e) {
+      console.log(e.message)
+    }
   }
 
   view() {
