@@ -6,24 +6,17 @@ function isAdult(value) {
   };
 }
 
-const person = {
-  id: 1,
-  firstName: 'Mario',
-  lastName: 'Rossi',
-  age: 25
-};
-
-const person2 = {
-  id: 2,
-  firstName: 'Paolo',
-  lastName: 'Bianchi',
-  age: 17
+class Person {
+  constructor(id, firstName, lastName, age) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+  }
 }
 
-var {age,...other} = person;
+const person = new Person(1, 'John', 'Doe', 17);
 
-var {age,...other} = person2;
+let {age,...other} = person;
 
-
-
-console.log(isAdult(person2));
+console.log(isAdult(person));
