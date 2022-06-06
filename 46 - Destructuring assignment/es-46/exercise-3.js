@@ -3,6 +3,8 @@
 function isAdult({age, firstName,lastName} = person) {
   if (age >= 18){
     return `${firstName} ${lastName} is an adult`;
+  }else{
+    return `${firstName} ${lastName} is not an adult`;    
   };
 }
 
