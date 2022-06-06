@@ -16,3 +16,10 @@ let a = arr[0]
 let b = arr[1]
 
 console.log('with destructuration', a, b); 
+
+
+// rivisitazione esercizio dopo la correzione del tutor
+
+[num1,num2] = [num2,num1]
+
+console.log('after correction', num1, num2);

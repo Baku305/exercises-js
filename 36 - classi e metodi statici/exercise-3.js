@@ -4,9 +4,9 @@ class Person {
     this.lastName = lastName;
   }
 
-  static fromObject(newPerson){
-    newPerson = new Person(newPerson.firstName, newPerson.lastName);
-    return newPerson;
+  static fromObject(value){
+    value = new Person(value.firstName, value.lastName);
+    return value;
   } 
 }
 
