@@ -1,13 +1,12 @@
 function memoize(fn) {
-  let cache = {
-  };
+  let cache = {};
   // ...   
   return (n) => { 
     if (n in cache) {             
       return `${cache[n]}`;         
     } else {                      
-      cache[n]  = fn(n);
-      return cache[n];
+      cache[n] = fn(n);
+      return fn(n);
     }
   };
 
