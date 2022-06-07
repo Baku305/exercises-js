@@ -17,7 +17,8 @@ class BankAccount {
     } 
     catch (error) {
       console.log(error.message);
-    }
+    };
+    
   }
   
 
@@ -53,11 +54,11 @@ class BankAccount {
 
 const bankAccount = new BankAccount(10000);
 setTimeout(() => bankAccount.deposit(100) , 1000);
-setTimeout(() => bankAccount.deposit(-500) , 2000);
-setTimeout(() => bankAccount.deposit(500) , 3000);
-setTimeout(() => bankAccount.withdraw(5000) , 4000);
-setTimeout(() => bankAccount.withdraw(10000) , 5000); // This operation should not be possible, because you cannot withdraw more than the account balance
-setTimeout(() => bankAccount.withdraw(7000) , 6000);
-setTimeout(() => bankAccount.withdraw(-10) , 8000);
-setTimeout(() => bankAccount.view() , 9000);
+setTimeout(() => bankAccount.deposit(-500) , 1500);
+setTimeout(() => bankAccount.deposit(500) , 2000);
+setTimeout(() => bankAccount.withdraw(5000) , 2500);
+setTimeout(() => bankAccount.withdraw(10000) , 3000); // This operation should not be possible, because you cannot withdraw more than the account balance
+setTimeout(() => bankAccount.withdraw(7000) , 3500);
+setTimeout(() => bankAccount.withdraw(-10) , 4000);
+setTimeout(() => bankAccount.view() , 4500);
 

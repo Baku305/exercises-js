@@ -23,7 +23,7 @@ class BankAccount {
       throw new Error('You cannot withdraw more than account balance');
     }
     else {
-     this.#amount -= amount;
+    this.#amount -= amount;
     }
     } 
     catch (e) {
