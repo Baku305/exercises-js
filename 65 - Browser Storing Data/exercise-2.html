@@ -12,4 +12,8 @@
 
 <script>
   // code here
+  document.getElementById('fetch-post').onclick = () => {
+    const post = JSON.parse(localStorage.getItem('post'))
+    document.getElementById('post-title').innerHTML = post.title;
+  }
 </script>
