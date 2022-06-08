@@ -41,7 +41,7 @@ const fetchPersonById = (id) => {
     setTimeout(() => {
       resolve (persons.find(person => person.id === id));
     })
-  }
+  },1000
   );
 }
 
@@ -49,12 +49,10 @@ const fetchJobById = (id) => {
   return new Promise((resolve,reject) => {
     setTimeout(() => {
       resolve (jobs.find(job => job.id === id));
-    })
+    },500)
   })
 }
 
 Promise.any([fetchPersonById(1),fetchJobById(1)]).then((values) => {
   console.log(values);
-  let {firstName,lastName} = values;
-  console.log(firstName, lastName);
   })
