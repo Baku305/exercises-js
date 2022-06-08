@@ -35,3 +35,26 @@ const jobs = [
 ];
 
 // core here
+
+const fetchPersonById = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve (persons.find(person => person.id === id));
+    })
+  }
+  );
+}
+
+const fetchJobById = (id) => {
+  return new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve (jobs.find(job => job.id === id));
+    })
+  })
+}
+
+Promise.any([fetchPersonById(1),fetchJobById(1)]).then((values) => {
+  console.log(values);
+  let {firstName,lastName} = values;
+  console.log(firstName, lastName);
+  })

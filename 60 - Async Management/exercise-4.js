@@ -36,7 +36,7 @@ const jobs = [
 
 // core here
 
-function fetchPersonById(id) {
+const fetchPersonById = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (persons.find(person => person.id === id)){
@@ -47,7 +47,7 @@ function fetchPersonById(id) {
   );
 }
 
-function fetchJobById(id){
+const fetchJobById = (id) => {
   return new Promise((resolve,reject) => {
     setTimeout(() => {
       if (jobs.find(job => job.id === id)){

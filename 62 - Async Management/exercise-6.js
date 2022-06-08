@@ -29,11 +29,29 @@ function fetchPersonById(id) {
       }
 
       return reject(`Person with id: ${id} doesn't exist`);
-    }, 1000);
+    }, 3000);
   });
 }
 
-fetchPersonById(2)
-  .then((personJson) => JSON.parse(personJson))
-  .then((person) => console.log(person))
-  .catch((err) => console.error(err));
+// fetchPersonById(2)
+//   .then((personJson) => JSON.parse(personJson))
+//   .then((person) => console.log(person))
+//   .catch((err) => console.error(err));
+
+const demo = async () => {
+  let pJson = await fetchPersonById(2);
+  console.log(pJson);
+  console.log(typeof(pJson));
+
+  let parseJson = await pJson;
+  console.log(JSON.parse(parseJson))
+  console.log(typeof(JSON.parse(parseJson)));
+
+  try {
+    await fetchPersonById(4);
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+demo ();
