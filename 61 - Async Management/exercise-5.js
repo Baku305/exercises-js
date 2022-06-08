@@ -40,8 +40,8 @@ const fetchPersonById = (id) => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve (persons.find(person => person.id === id));
-    })
-  },1000
+    },1000)
+  }
   );
 }
 
