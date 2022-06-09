@@ -14,6 +14,10 @@
           <label>Age:</label>
           <input type="number" class="form-input" id="age" value="25"/>
         </div>
+        <div>
+          <label>Weight:</label>
+          <input type="number" class="form-input" id="weight " value="75"/>
+        </div>
       </form>
     </div>
   </body>
@@ -21,4 +25,29 @@
 
 <script>
   // code here
+  const finder = () => {
+    const inputEl = document.querySelectorAll('.form-input');
+    const labelEl = document.querySelectorAll('label');
+    array = [];
+    arrayKey = [];
+
+    
+    inputEl.forEach(element => {
+      element.value
+      array.push(element.value);
+    });
+
+      labelEl.forEach(element => {
+        element.innerHTML
+        arrayKey.push(element.innerHTML);
+      });
+
+    for (i = 0 ; i < array.length ; i++ ) {
+      console.log(`${arrayKey[i]} ${array[i]}`);
+    }
+  }
+
+  finder();
+
+
 </script>
