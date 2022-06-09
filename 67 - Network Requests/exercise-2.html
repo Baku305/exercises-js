@@ -6,4 +6,28 @@
 
 <script>
   // code here
+  fetch('https://jsonplaceholder.typicode.com/todos/4')
+  .then(response => response.json())
+  .then(json => {
+    const container = document.getElementById('container');
+    const div = document.createElement('div');
+    div.innerHTML = `<h2>${json.title}</h2>`;
+    container.appendChild(div);
+  })
+  .then(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos/4')
+    .then(response => response.json())
+    .then (json => {
+      const container = document.getElementById('container');
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      if (json.completed) {
+        checkbox.checked = true;
+      } else {
+        checkbox.checked = false;
+      }
+      container.appendChild(checkbox);
+      console.log(json);
+    })
+    })
 </script>
