@@ -28,22 +28,20 @@
   const finder = () => {
     const inputEl = document.querySelectorAll('.form-input');
     const labelEl = document.querySelectorAll('label');
-    array = [];
-    arrayKey = [];
-
+    array = inputEl.value;
     
-    inputEl.forEach(element => {
-      element.value
-      array.push(element.value);
-    });
+    // inputEl.forEach(element => {
+    //   element.value
+    //   array.push(element.value);
+    // });
 
-      labelEl.forEach(element => {
-        element.innerHTML
-        arrayKey.push(element.innerHTML);
-      });
+    //   labelEl.forEach(element => {
+    //     element.innerHTML
+    //     arrayKey.push(element.innerHTML);
+    //   });
 
-    for (i = 0 ; i < array.length ; i++ ) {
-      console.log(`${arrayKey[i]} ${array[i]}`);
+    for (i = 0 ; i < inputEl.length ; i++ ) {
+      console.log(`${labelEl[i].textContent} ${inputEl[i.value]}`);
     }
   }
 
