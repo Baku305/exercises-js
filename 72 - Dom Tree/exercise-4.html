@@ -21,4 +21,18 @@
 
 <script>
   // code here
+  const inputEl = document.querySelectorAll('input');
+
+  person = {}
+
+  for (let i = 0; i < inputEl.length; i++) {
+    let inputKey = inputEl[i].id;
+    let inputValue = inputEl[i].value;
+    person[inputKey] = inputValue;
+  }
+
+
+    const formEl = document.querySelector('form').setAttribute('data-person', JSON.stringify(person));
+
+  console.log(person)
 </script>
