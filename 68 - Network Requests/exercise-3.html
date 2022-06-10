@@ -19,40 +19,42 @@
 
 <script>
   // code here
-  const titleobj = document.body.querySelector('#todo-title');
-  const completedobj = document.body.querySelector('#todo-completed');
-  const submit = document.body.querySelector('#submit-todo')
-  
-  const obj = {
-  }
-  
-  titleobj.addEventListener ("blur",()=>{ 
-     obj.title = titleobj.value 
-   }) 
-   
-   
-   completedobj.addEventListener ("blur",()=>{ 
-     obj.completed = completedobj.checked
-   }) 
-   
-  
-   submit.addEventListener ("click",(e)=>{ 
-     e.preventDefault() 
-     postObject(); 
-   }) 
- 
+  const textTitle = document.querySelector("#todo-title");
+  const checkboxChecked = document.querySelector("#todo-completed");
+  const submit = document.querySelector("#submit-todo").textContent = "Submit";
 
-  
-  async function postObject(){ 
-   const rawResponse = await fetch('https://jsonplaceholder.typicode.com/posts', { 
-     method: 'POST', 
-     headers: { 
-       'Accept': 'application/json', 'Content-Type': 'application/json/;charset=utf-8' 
-     }, 
-     body: JSON.stringify(obj) 
-   });
-   const content = await rawResponse.json()
-   console.log(content)
- }
- 
+  class PostObj {
+    constructor (){
+      this.title = ""
+      this.checked = ""
+    }
+  }
+
+  const newObj = new PostObj ()
+
+  textTitle.addEventListener("blur", () => {newObj.title = textTitle.value });
+
+  checkboxChecked.addEventListener("blur", () => {newObj.checked = checkboxChecked.checked});
+
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    postObject()
+    console.log (newObj)
+  })
+
+
+
+  let postObject = async () => {
+    const rawResponse = await fetch(
+      "https://jsonplaceholder.typicode.com/posts",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json/;charset=utf-8",
+        },     
+        body: JSON.stringify(newObj),
+      }
+    );
+  }
 </script>
