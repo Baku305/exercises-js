@@ -19,6 +19,40 @@
 
 <script>
   // code here
-  fetch('https://jsonplaceholder.typicode.com/posts' {})
-  .then(response => response.json())
+  const titleobj = document.body.querySelector('#todo-title');
+  const completedobj = document.body.querySelector('#todo-completed');
+  const submit = document.body.querySelector('#submit-todo')
+  
+  const obj = {
+  }
+  
+  titleobj.addEventListener ("blur",()=>{ 
+     obj.title = titleobj.value 
+   }) 
+   
+   
+   completedobj.addEventListener ("blur",()=>{ 
+     obj.completed = completedobj.checked
+   }) 
+   
+  
+   submit.addEventListener ("click",(e)=>{ 
+     e.preventDefault() 
+     postObject(); 
+   }) 
+ 
+
+  
+  async function postObject(){ 
+   const rawResponse = await fetch('https://jsonplaceholder.typicode.com/posts', { 
+     method: 'POST', 
+     headers: { 
+       'Accept': 'application/json', 'Content-Type': 'application/json/;charset=utf-8' 
+     }, 
+     body: JSON.stringify(obj) 
+   });
+   const content = await rawResponse.json()
+   console.log(content)
+ }
+ 
 </script>
