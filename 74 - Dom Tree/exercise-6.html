@@ -18,8 +18,7 @@
   personFormEl.style.gap = '5px'
   containerEl.style.width = '30vw'
 
-  let submitEl = document.querySelector('button')
-  submitEl.style.width = '50%'
+
 
   let firstNameInput = document.createElement("input")
   firstNameInput.setAttribute('placeholder', 'firstName');
@@ -35,7 +34,7 @@
   let initForm = () => {
     for (let index = 0; index < ElArray.length; index++) {
       let inputEl = ElArray[index]
-      submitEl.before(inputEl)
+      personFormEl.prepend(inputEl)
       console.log(inputEl);
     }
   }
@@ -54,7 +53,7 @@
 
 
 
-    submitEl.addEventListener('click', (e) => {
+    personFormEl.addEventListener('submit', (e) => {
       e.preventDefault();
       submitPersonForm();
     })
