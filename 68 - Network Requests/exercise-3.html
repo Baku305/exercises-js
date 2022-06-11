@@ -36,8 +36,8 @@
 
   checkboxChecked.addEventListener("blur", () => {newObj.checked = checkboxChecked.checked});
 
-  submit.addEventListener("click", (e) => {
-    e.preventDefault();
+  submit.addEventListener("click", () => {
+    submit.preventDefault();
     postObject()
     console.log (newObj)
   })

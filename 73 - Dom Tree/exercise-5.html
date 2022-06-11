@@ -12,4 +12,38 @@
 
 <script>
   // code here
+  const buttonEl = document.getElementById('add-row')
+  const tableEl = document.getElementById('person-table')
+  tableEl.style.borderCollapse = 'collapse'
+
+
+  buttonEl.addEventListener('click', (e) => {
+    e.preventDefault;
+    addRow()
+  })
+    let firstName = document.createText='fistName'
+    let lastName = document.createText="lastName"
+    let age = document.createText='age'
+    let array = [firstName,lastName,age]
+
+  addRow = () => {
+    let row = document.createElement("tr")
+    let tbodyEl = document.querySelector('tbody')
+    tbodyEl.appendChild(row)
+
+    for (i = 0; i < 1; i++){
+      for (let index = 0; index < array.length; index++) {
+        const tdEl = document.createElement('td')
+        tdEl.style.padding = '5px'
+        tdEl.style.border = '1px solid'
+        tdEl.textContent = array[index]
+
+        row.appendChild(tdEl)
+        console.log(tdEl)
+      }
+    }
+  }
+
+  
+  
 </script>

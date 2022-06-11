@@ -15,4 +15,30 @@
 
 <script>
   // code here
+  const listItemEl = document.querySelectorAll('.hero-list-item')
+  
+
+  let mouseOver = () => {
+  listItemEl.forEach(item => {
+    item.addEventListener('mouseover', () => {
+      item.style.color = 'red'
+    })
+  }) 
+  }
+
+  let mouseOut = () => {
+  listItemEl.forEach(item => {
+    item.addEventListener('mouseout', () => {
+      item.style.color = 'black'
+    })
+  }) 
+  }
+  
+  mouseOver()
+  mouseOut()
+  
+  console.log(listItemEl);
+
+
+
 </script>

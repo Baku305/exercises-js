@@ -11,4 +11,50 @@
 
 <script>
   // Code here
+  let containerEl = document.getElementById('container')
+  let personFormEl = document.getElementById('person-form')
+  personFormEl.style.display = 'flex'
+  personFormEl.style.flexDirection ='column'
+  personFormEl.style.gap = '5px'
+  containerEl.style.width = '30vw'
+
+  let submitEl = document.querySelector('button')
+  submitEl.style.width = '50%'
+
+  let firstNameInput = document.createElement("input")
+  firstNameInput.setAttribute('placeholder', 'firstName');
+  
+  let lastNameInput = document.createElement("input");
+  lastNameInput.setAttribute('placeholder', 'lastName');
+  
+  let ageInput = document.createElement("input");
+  ageInput.setAttribute('placeholder', 'age');
+  
+  let ElArray = [firstNameInput, lastNameInput, ageInput]
+
+  let initForm = () => {
+    for (let index = 0; index < ElArray.length; index++) {
+      let inputEl = ElArray[index]
+      submitEl.before(inputEl)
+      console.log(inputEl);
+    }
+  }
+  initForm()
+
+  let submitPersonForm = () => {
+    let personObj = {
+    firstName : firstNameInput.value,
+    lastName : lastNameInput.value,
+    age : ageInput.value
+    }
+    console.log(personObj);
+    }
+
+
+
+    submitEl.addEventListener('click', (e) => {
+      e.preventDefault();
+      submitPersonForm();
+    })
+
 </script>
