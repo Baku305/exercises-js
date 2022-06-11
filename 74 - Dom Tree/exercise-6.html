@@ -42,11 +42,13 @@
   initForm()
 
   let submitPersonForm = () => {
-    let personObj = {
-    firstName : firstNameInput.value,
-    lastName : lastNameInput.value,
-    age : ageInput.value
-    }
+    let personObj = {}
+
+    for (let i = 0; i < ElArray.length; i++) {
+    let Key = ElArray[i].placeholder;
+    let Value = ElArray[i].value;
+    personObj[Key] = Value;
+  }
     console.log(personObj);
     }
 
