@@ -11,7 +11,7 @@
           <input type="checkbox" id="todo-completed" />
         </div>
 
-        <button type="submit" id="submit-todo"></button>
+        <button type="submit" id="submit-todo">Submit</button>
       </form>
     </div>
   </body>
@@ -21,26 +21,21 @@
   // code here
   const textTitle = document.querySelector("#todo-title");
   const checkboxChecked = document.querySelector("#todo-completed");
-  const submit = document.querySelector("#submit-todo").textContent = "Submit";
+  const submit = document.querySelector("#submit-todo");
 
   class PostObj {
-    constructor (){
-      this.title = ""
-      this.checked = ""
+    constructor (title, checked){
+      this.title = title
+      this.checked = checked
     }
   }
 
-  const newObj = new PostObj ()
+  const newObj = new PostObj (textTitle.value, checkboxChecked.checked)
 
-  textTitle.addEventListener("blur", () => {newObj.title = textTitle.value });
+ //textTitle.addEventListener("blur", () => {newObj.title = textTitle.value });
 
-  checkboxChecked.addEventListener("blur", () => {newObj.checked = checkboxChecked.checked});
+  //checkboxChecked.addEventListener("blur", () => {newObj.checked = checkboxChecked.checked});
 
-  submit.addEventListener("click", () => {
-    submit.preventDefault();
-    postObject()
-    console.log (newObj)
-  })
 
   let postObject = async () => {
     const rawResponse = await fetch(
@@ -54,5 +49,11 @@
         body: JSON.stringify(newObj),
       }
     );
+    console.log(newObj);
   }
+
+  submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    postObject()
+  })
 </script>
