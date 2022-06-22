@@ -146,8 +146,10 @@ let removeFromCart = (id) => {
   let product = productsInCart.find((product) => product.id === id);
   if (product.quantity > 1) {
     product.quantity--;
+  }else{
+    productsInCart.splice(productsInCart.indexOf(product), 1);
   }
-  productsInCart.splice(productsInCart.indexOf(product), 1);
+
 };
 console.log("-------------------INITIAL CART-------------------");
 console.log(productsInCart);
