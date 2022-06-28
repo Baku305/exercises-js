@@ -61,7 +61,7 @@ const list = (array) => {
 //Per ogni todo-list, visualizzare l'id, il titolo e se è stata completata o meno;
 //interagisco con il dom
 
-const table = document.createElement("table");
+/*const table = document.createElement("table");
 table.style =
   "display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border: 3px solid black; width: fit-content";
 table.style.overflowY = "scroll";
@@ -107,23 +107,23 @@ printTodos();
 //2. Visualizzazione di tutte le todo-list presenti a gruppi di 10,
 //con un sistema di impaginazione;
 
-const printGropuOfTen =   () =>
+const printGropuOfTen = () =>
 {
       console.log(nameList);
 
       for (const obj of nameList) {
             console.log(obj); 
       }
-    }
+    }*/
 
 
 
-const button = document.createElement("button");
+/*const button = document.createElement("button");
 button.innerText = "Next";
 button.style = "padding: 10px; border: 3px solid black;";
 container.appendChild(button);
 
-button.addEventListener("click", printGropuOfTen())
+button.addEventListener("click", printGropuOfTen())*/
 
 
 // 3. Sistema di ricerca per titolo e descrizione da input testo, che permette di filtrare le todo-list;
