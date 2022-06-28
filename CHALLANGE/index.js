@@ -23,111 +23,6 @@ let arr = getNames().then((res) =>
   })
 );
 
-//lsita elementi
-const list = (array) => {
-    array.forEach((todo) => {
-      const todoSortedEl = document.createElement("div");
-      todoSortedEl.className = "todoSortedEl";
-      todoSortedEl.style = "justify-content:space-between;width:100%";
-      todoSortedEl.style.display = "flex";
-  
-      const toDoSortedIdProp = document.createElement("span");
-      toDoSortedIdProp.className = "todoIdProp";
-      toDoSortedIdProp.innerText = `${todo.id}`;
-  
-      const toDoSortedTitleProp = document.createElement("span");
-      toDoSortedTitleProp.className = "todoTitleProp";
-      toDoSortedTitleProp.innerText = `${todo.title}'`;
-  
-      const toDoSortedCompletedProp = document.createElement("span");
-      toDoSortedCompletedProp.className = "todoCompletedProp";
-      toDoSortedCompletedProp.innerText = `${todo.completed}`;
-  
-      const span = document.querySelectorAll(".todoProp");
-      span.forEach((element) => {
-        element.style = "padding:10px";
-      });
-  
-      todoSortedEl.append(
-        toDoSortedIdProp,
-        toDoSortedTitleProp,
-        toDoSortedCompletedProp
-      );
-      resultContainer.appendChild(todoSortedEl);
-    });
-  };
-
-
-//Per ogni todo-list, visualizzare l'id, il titolo e se è stata completata o meno;
-//interagisco con il dom
-
-/*const table = document.createElement("table");
-table.style =
-  "display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border: 3px solid black; width: fit-content";
-table.style.overflowY = "scroll";
-table.style.height = "400px";
-table.style.border = "3px solid black";
-const tableTr = document.createElement("tr");
-const tableTh = document.createElement("thead");
-const tableBody = document.createElement("tbody");
-const tableThID = document.createElement("th");
-tableThID.innerText = "ID";
-const tableThTitle = document.createElement("th");
-tableThTitle.innerText = "Title";
-const tableThDone = document.createElement("th");
-tableThDone.innerText = "Done";
-
-container.append(table);
-table.append(tableTr);
-table.appendChild(tableBody);
-tableTr.append(tableThID, tableThTitle, tableThDone);
-
-const naming = (divToName) => divToName.innerText();
-
-const printTodos = () =>
-  getNames().then((res) =>
-    res.forEach((element) => {
-      let tdID = document.createElement("td");
-      tdID.innerText = `${element.id}`;
-
-      let tdName = document.createElement("td");
-      tdName.innerText = `${element.title}`;
-
-      let tdCompleted = document.createElement("td");
-      tdCompleted.innerText = `${element.completed}`;
-
-      const tr = document.createElement("tr");
-      tableBody.appendChild(tr);
-      tr.append(tdID, tdName, tdCompleted);
-    })
-  );
-
-printTodos();
-
-//2. Visualizzazione di tutte le todo-list presenti a gruppi di 10,
-//con un sistema di impaginazione;
-
-const printGropuOfTen = () =>
-{
-      console.log(nameList);
-
-      for (const obj of nameList) {
-            console.log(obj); 
-      }
-    }*/
-
-
-
-/*const button = document.createElement("button");
-button.innerText = "Next";
-button.style = "padding: 10px; border: 3px solid black;";
-container.appendChild(button);
-
-button.addEventListener("click", printGropuOfTen())*/
-
-
-// 3. Sistema di ricerca per titolo e descrizione da input testo, che permette di filtrare le todo-list;
-
 //inizializzo searchBar/form di ricerca
 
 //container sezione ricerca
@@ -180,24 +75,148 @@ optionSortIdDecrese.innerText = "ID decrescente";
 optionSortIdDecrese.id = "optionSortDecrese";
 inputSelectSort.appendChild(optionSortIdDecrese);
 
+//lista elementi
+const list = (array) => {
+  resultContainer.innerHTML = "";
+    array.forEach((todo) => {
+      const todoSortedEl = document.createElement("div");
+      todoSortedEl.className = "todoSortedEl";
+      todoSortedEl.style = "justify-content:space-between;width:100%";
+      todoSortedEl.style.display = "flex";
+  
+      const toDoSortedIdProp = document.createElement("span");
+      toDoSortedIdProp.className = "todoIdProp";
+      toDoSortedIdProp.innerText = `${todo.id}`;
+  
+      const toDoSortedTitleProp = document.createElement("span");
+      toDoSortedTitleProp.className = "todoTitleProp";
+      toDoSortedTitleProp.innerText = `${todo.title}'`;
+  
+      const toDoSortedCompletedProp = document.createElement("span");
+      toDoSortedCompletedProp.className = "todoCompletedProp";
+      toDoSortedCompletedProp.innerText = `${todo.completed}`;
+  
+      const span = document.querySelectorAll(".todoProp");
+      span.forEach((element) => {
+        element.style = "padding:10px";
+      });
+  
+      todoSortedEl.append(
+        toDoSortedIdProp,
+        toDoSortedTitleProp,
+        toDoSortedCompletedProp
+      );
+      resultContainer.appendChild(todoSortedEl);
+    });
+  };
+
+//Per ogni todo-list, visualizzare l'id, il titolo e se è stata completata o meno;
+//interagisco con il dom
+
+// const table = document.createElement("table");
+// table.style =
+//   "display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; border: 3px solid black; width: fit-content";
+// table.style.overflowY = "scroll";
+// table.style.height = "400px";
+// table.style.border = "3px solid black";
+// const tableTr = document.createElement("tr");
+// const tableTh = document.createElement("thead");
+// const tableBody = document.createElement("tbody");
+// const tableThID = document.createElement("th");
+// tableThID.innerText = "ID";
+// const tableThTitle = document.createElement("th");
+// tableThTitle.innerText = "Title";
+// const tableThDone = document.createElement("th");
+// tableThDone.innerText = "Done";
+
+// container.append(table);
+// table.append(tableTr);
+// table.appendChild(tableBody);
+// tableTr.append(tableThID, tableThTitle, tableThDone);
+
+// const naming = (divToName) => divToName.innerText();
+
+const printTodos = () => {
+  
+    nameList.forEach((todo) => {
+    const todoEl = document.createElement("div");
+    todoEl.className = "todoEl";
+    todoEl.style = "justify-content:space-between;width:100%";
+    todoEl.style.display = "flex";
+    const todoIdProp = document.createElement("span");
+    todoIdProp.className = "todoIdProp";
+    todoIdProp.innerText = `${todo.id}`;
+    const todoTitleProp = document.createElement("span");
+    todoTitleProp.className = "todoTitleProp";
+    todoTitleProp.innerText = `${todo.title}'`;
+    const todoCompletedProp = document.createElement("span");
+    todoCompletedProp.className = "todoCompletedProp";
+    todoCompletedProp.innerText = `${todo.completed}`;
+    const span = document.querySelectorAll(".todoProp");
+    span.forEach((element) => {
+      element.style = "padding:10px";
+    }
+    );
+    todoEl.append(
+      todoIdProp,
+      todoTitleProp,
+      todoCompletedProp
+    );
+    resultContainer.append(todoEl);
+  })
+
+}
+
+printTodos();
+
+//2. Visualizzazione di tutte le todo-list presenti a gruppi di 10,
+//con un sistema di impaginazione;
+
+const printGropuOfTen = () =>
+{
+      console.log(nameList);
+
+      for (const obj of nameList) {
+            console.log(obj); 
+      }
+    }
+
+
+// 3. Sistema di ricerca per titolo e descrizione da input testo, che permette di filtrare le todo-list;
 
 // funzione per la ricerca
 
-const searchbyTitle = (event) => {
-  resultContainer.innerHTML = "";
-  const text = event.target.value;
-  list(nameList);
-  const todoSortedEl = document.querySelectorAll(".todoSortedEl");
-  todoSortedEl.forEach((element) => {
-    if (!element.innerText.includes(text)) {
-      element.remove();
-    } else {
-      element.style.display = "flex";
-    }
-  });
-};
+// const searchbyTitle = (event) => {
+//   const text = event.target.value;
+//   resultContainer.innerHTML = "";
+//   list(nameList)
+//   const todoSortedEl = document.querySelectorAll(".todoSortedEl");
+//   todoSortedEl.forEach((element) => {
+//     if (!element.innerText.includes(text)) {
+//       element.remove()
+//     } else {
+//       element.style.display = "flex";
+//     }
+//   });
+// };
 
-searchInput.addEventListener("keyup", searchbyTitle);
+// searchInput.addEventListener("keyup", searchbyTitle);
+
+  const button = document.createElement("button");
+  button.className = "button";
+  button.innerText = "Next";
+  button.style = "padding: 10px; border: 3px solid black;width: fit-content";
+  searchContainer.appendChild(button);
+
+
+
+ //funzione print in gruppi da 10 
+
+  const impagination = () => {
+  list(nameList);
+  }
+
+  button.onclick = impagination();
 
 // funzione per il sort con checkbox
 
