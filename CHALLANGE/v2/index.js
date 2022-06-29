@@ -32,29 +32,39 @@ const searchContainer = document.querySelector(".searchContainer");
 const searchInput = document.querySelector(".searchInput");
 //wrapper risultato
 const resultContainer = document.querySelector(".resultContainer");
+
+
 //checkbox completati
-const checkCompleted = document.querySelector(".completedCheck");
+const selectCompleted = document.querySelector(".completedCheck");
+//onlyTrue option
+const onlytrue = document.createElement("option");
+onlytrue.innerText = "Only completed";
+selectCompleted.appendChild(onlytrue);
+
+//onlyfalse
+const onlyFalse = document.createElement("option");
+onlyFalse.innerText = "Only not completed";
+selectCompleted.appendChild(onlyFalse);
+
+
+
 //select sort alfabetico crescente
 const inputSelectSort = document.querySelector(".inputSelectSort");
 //opzione sort alfabetico crescente
 const optionSortIncrese = document.createElement("option");
 optionSortIncrese.innerText = "crescente";
-optionSortIncrese.id = "optionSortIncrese";
 inputSelectSort.appendChild(optionSortIncrese);
 //opzione sort alfabetico decrescente
 const optionSortDecrese = document.createElement("option");
 optionSortDecrese.innerText = "decrescente";
-optionSortDecrese.id = "optionSortDecrese";
 inputSelectSort.appendChild(optionSortDecrese);
 //opzione sort id crescente
 const optionSortIdIncrese = document.createElement("option");
 optionSortIdIncrese.innerText = "ID crescente";
-optionSortIdIncrese.id = "optionSortIncrese";
 inputSelectSort.appendChild(optionSortIdIncrese);
 //opzione sort id decrescente
 const optionSortIdDecrese = document.createElement("option");
 optionSortIdDecrese.innerText = "ID decrescente";
-optionSortIdDecrese.id = "optionSortDecrese";
 inputSelectSort.appendChild(optionSortIdDecrese);
 
 //lista elementi 
@@ -63,9 +73,9 @@ const printTodos = async () => {
     await arr
     nameList.forEach((todo) => {
       const todoSortedEl = document.createElement("div");
-      todoSortedEl.className = "todoSortedEl";
+      todoSortedEl.classList.add("todoSortedEl");
+      todoSortedEl.classList.add("todo-visible");
       todoSortedEl.style = "justify-content:space-between;width:100%";
-      todoSortedEl.style.display = "flex";
   
       const toDoSortedIdProp = document.createElement("span");
       toDoSortedIdProp.className = "todoIdProp";
@@ -89,10 +99,6 @@ const printTodos = async () => {
       );
       resultContainer.append(todoSortedEl);
     });
-    // for (let i = 0; i < todoSortedEl.length; i++) {
-    //   if (i % 10 === 0) {
-    //     GroupOfTen.push(toArray.slice(i, i + 10));
-    //   }} // primo tentativo incompleto praticamente mi crea un nuovo array
     }
 
 printTodos();
@@ -105,13 +111,20 @@ printTodos();
 // funzione per la ricerca
 
  const searchbyTitle = (event) => {
+  
   const text = event.target.value;
   const todoSortedEl = document.querySelectorAll(".todoSortedEl");
+  toArray = Array.from(todoSortedEl);
+
   todoSortedEl.forEach((element) => {
+
     if (!element.innerText.includes(text)) {
-      element.remove()
+      element.classList.add("hidden");
+      element.classList.remove("todo-visible");
     } else {
-      element.style.display = "flex";
+      
+      element.classList.remove("hidden");
+      element.classList.add("todo-visible");
     }
   });
  };
@@ -154,7 +167,7 @@ printTodos();
      })
 
     }
-    console.log(GroupOfTen)
+
 
 
   }
@@ -162,36 +175,40 @@ printTodos();
     button.addEventListener("click", impagination);
 // funzione per il sort con checkbox
 
-//checkCompleted
-//todoCompletedProp
-
  const checked = () => {
-   const todoEls = document.querySelectorAll(".todoSortedEl");
-   todoEls.forEach((todoEl) => {
-     const todoCompletedprop = document.querySelectorAll(".todoCompletedProp");
+   const todoEls = document.querySelectorAll(".todo-visible");
+   toArray = Array.from(todoEls);
+   toArray.filter((todoEl) => {
+    if (selectCompleted.value === "Only completed") {
+      const onlyTrueEl = todoEl.querySelector(".todoCompletedProp");
+      console.log(onlyTrueEl);
+      if (onlyTrueEl.innerText === "true") {
 
-     if (checkCompleted.checked) {
-       todoCompletedprop.forEach((todoCompleted) => {
-         if (todoCompleted.innerText === "true") {
-           todoCompleted.parentElement.style.display = "flex";
-         } else {
-          todoCompleted.parentElement.style.display = "none";
-         }
-       });
-     } else if (!checkCompleted.checked) {
-       todoCompletedprop.forEach((todoCompleted) => {
-         if (todoCompleted.innerText === "true") {
-           todoCompleted.parentElement.style.display = "none";
-         } else {
-           todoCompleted.parentElement.style.display = "flex";
-         }
-       });
-       todoEl.style.display = "none";
-     }
-   });
+        todoEl.classList.remove("hidden");
+        todoEl.style.display = 'flex'
+
+      } else{
+
+        todoEl.classList.add("hidden");
+        todoEl.style.display = 'none'
+      }}
+    else if (selectCompleted.value ==="Only not completed") {
+      const onlyFalseEl = todoEl.querySelector(".todoCompletedProp");
+      console.log(onlyFalseEl);
+      if(onlyFalseEl.innerText === "false"){
+        todoEl.classList.remove("hidden");
+        todoEl.style.display = 'flex'
+
+      } else {
+        todoEl.style.display = 'none'
+        todoEl.classList.add("hidden");
+      }
+   }});
  };
+onlytrue.addEventListener("click", checked);
+onlyFalse.addEventListener("click", checked);
 
- checkCompleted.addEventListener("change", checked);
+
 
 //sort titolo
 
@@ -224,5 +241,8 @@ const sorter = () => {
     })
 };
 
+optionSortIncrese.addEventListener('click',sorter)
+optionSortDecrese.addEventListener('click',sorter)
+optionSortIdIncrese.addEventListener('click',sorter)
+optionSortIdDecrese.addEventListener('click',sorter)
 
-inputSelectSort.addEventListener("change", sorter);

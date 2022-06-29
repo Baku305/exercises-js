@@ -9,6 +9,7 @@ html {
 }
 
 #container {
+  margin-top: 20px;
   width: 100%;
   height: 500px;
   display: flex;
@@ -20,4 +21,11 @@ html {
   width: 100%;
   height: 100%;
   background-color: cornflowerblue;
+}
+.hidden {
+  display: none;
+}
+
+.todo-visible {
+  display: flex;
 }/*# sourceMappingURL=style.css.map */
