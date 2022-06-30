@@ -15,14 +15,14 @@ const getNames = async () => {
 
 const nameList = []; //arrai vuoto
 
-let arr = getNames().then((res) => //promise che pusha tutto nela array
-  res.forEach((element) => {
-    nameList.push(element);
-  })
+let arr = getNames().then(
+  (
+    res //promise che pusha tutto nela array
+  ) =>
+    res.forEach((element) => {
+      nameList.push(element);
+    })
 );
-
-
-
 
 //inizializzo searchBar/form di ricerca
 
@@ -32,7 +32,6 @@ const searchContainer = document.querySelector(".searchContainer");
 const searchInput = document.querySelector(".searchInput");
 //wrapper risultato
 const resultContainer = document.querySelector(".resultContainer");
-
 
 //checkbox completati
 const selectCompleted = document.querySelector(".completedCheck");
@@ -46,7 +45,9 @@ const onlyFalse = document.createElement("option");
 onlyFalse.innerText = "Only not completed";
 selectCompleted.appendChild(onlyFalse);
 
-
+const allSelected = document.createElement("option");
+allSelected.innerText = "All";
+selectCompleted.appendChild(allSelected);
 
 //select sort alfabetico crescente
 const inputSelectSort = document.querySelector(".inputSelectSort");
@@ -67,148 +68,219 @@ const optionSortIdDecrese = document.createElement("option");
 optionSortIdDecrese.innerText = "ID decrescente";
 inputSelectSort.appendChild(optionSortIdDecrese);
 
-//lista elementi 
+
+//boottone prev
+const buttonPrev = document.createElement("button");
+buttonPrev.className = "button";
+buttonPrev.innerText = "Prev";
+searchContainer.appendChild(buttonPrev);
+//bottone view
+// const buttonView = document.createElement("button");
+// buttonView.className = "button";
+// buttonView.innerText = "View";
+// searchContainer.appendChild(buttonView);
+
+//bottone next
+const buttonNext = document.createElement("button");
+buttonNext.className = "button";
+buttonNext.innerText = "Next";
+searchContainer.appendChild(buttonNext);
+
+//lista elementi
+
+const pageSize = 10;
+let curPage = 1;
+let counterPage = 1
 
 const printTodos = async () => {
-    await arr
+
+  await arr;
+  
     nameList.forEach((todo) => {
-      const todoSortedEl = document.createElement("div");
-      todoSortedEl.classList.add("todoSortedEl");
-      todoSortedEl.classList.add("todo-visible");
-      todoSortedEl.style = "justify-content:space-between;width:100%";
-  
-      const toDoSortedIdProp = document.createElement("span");
-      toDoSortedIdProp.className = "todoIdProp";
-      toDoSortedIdProp.innerText = `${todo.id}`;
-  
-      const toDoSortedTitleProp = document.createElement("span");
-      toDoSortedTitleProp.className = "todoTitleProp";
-      toDoSortedTitleProp.innerText = `${todo.title}'`;
-  
-      const toDoSortedCompletedProp = document.createElement("span");
-      toDoSortedCompletedProp.className = "todoCompletedProp";
-      toDoSortedCompletedProp.innerText = `${todo.completed}`;
-  
-      const span = document.querySelectorAll(".todoProp");
-      span.forEach((element) => {
-        element.style = "padding:10px";
-      });
+    const todoSortedEl = document.createElement("div");
+    todoSortedEl.classList.add("todoSortedEl");
+    todoSortedEl.classList.add("hidden");
+    todoSortedEl.style = "justify-content:space-between;width:100%";
 
-      todoSortedEl.append(
-        toDoSortedIdProp,toDoSortedTitleProp,toDoSortedCompletedProp
-      );
-      resultContainer.append(todoSortedEl);
+    const toDoSortedIdProp = document.createElement("span");
+    toDoSortedIdProp.className = "todoIdProp";
+    toDoSortedIdProp.innerText = `${todo.id}`;
+
+    const toDoSortedTitleProp = document.createElement("span");
+    toDoSortedTitleProp.className = "todoTitleProp";
+    toDoSortedTitleProp.innerText = `${todo.title}'`;
+
+    const toDoSortedCompletedProp = document.createElement("span");
+    toDoSortedCompletedProp.className = "todoCompletedProp";
+    toDoSortedCompletedProp.innerText = `${todo.completed}`;
+
+    const span = document.querySelectorAll(".todoProp");
+    span.forEach((element) => {
+      element.style = "padding:10px";
     });
-    }
 
-printTodos();
+    todoSortedEl.append(
+      toDoSortedIdProp,
+      toDoSortedTitleProp,
+      toDoSortedCompletedProp
+    );
+    resultContainer.append(todoSortedEl)
+    });
 
+  
+};
+
+printTodos().then( () => {
+
+  const todoSortedEl = document.querySelectorAll(".todoSortedEl");
+  toArray = Array.from(todoSortedEl);
+  todoSortedEl.forEach((element) => {
+    element.classList.add("hidden");
+    element.classList.remove("todo-visible");
+  })
+  toArray.filter((div, i) => {
+    if(i >= (curPage - 1) * pageSize && i < curPage * pageSize) {
+    return true 
+  } 
+  }
+  ).forEach((element) => {
+    const index = toArray.indexOf(element);
+    console.log(index);
+    element.classList.remove("hidden");
+    element.classList.add("todo-visible");
+  })
+})
+
+// buttonView.addEventListener("click", printOften);
 
 //2. Visualizzazione di tutte le todo-list presenti a gruppi di 10,
 //con un sistema di impaginazione;
 
-
 // funzione per la ricerca
 
- const searchbyTitle = (event) => {
-  
+const searchbyTitle = async (event) => {
+  resultContainer.innerHTML = "";
   const text = event.target.value;
+      nameList.forEach( (todo) => {
+        if (todo.title.toLowerCase().includes(text.toLowerCase()) || text === '' || todo.id.toString().includes(text)) {
+          const todoSortedEl = document.createElement("div");
+    todoSortedEl.classList.add("todoSortedEl");
+    todoSortedEl.style = "justify-content:space-between;width:100%";
+
+    const toDoSortedIdProp = document.createElement("span");
+    toDoSortedIdProp.className = "todoIdProp";
+    toDoSortedIdProp.innerText = `${todo.id}`;
+
+    const toDoSortedTitleProp = document.createElement("span");
+    toDoSortedTitleProp.className = "todoTitleProp";
+    toDoSortedTitleProp.innerText = `${todo.title}'`;
+
+    const toDoSortedCompletedProp = document.createElement("span");
+    toDoSortedCompletedProp.className = "todoCompletedProp";
+    toDoSortedCompletedProp.innerText = `${todo.completed}`;
+
+    const span = document.querySelectorAll(".todoProp");
+    span.forEach((element) => {
+      element.style = "padding:10px";})
+
+    todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
+    resultContainer.append(todoSortedEl)
+        }
+        })
+
   const todoSortedEl = document.querySelectorAll(".todoSortedEl");
   toArray = Array.from(todoSortedEl);
-
   todoSortedEl.forEach((element) => {
-
-    if (!element.innerText.includes(text)) {
-      element.classList.add("hidden");
-      element.classList.remove("todo-visible");
-    } else {
-      
-      element.classList.remove("hidden");
-      element.classList.add("todo-visible");
-    }
-  });
- };
-
- searchInput.addEventListener("keyup", searchbyTitle);
-
-  const button = document.createElement("button");
-  button.className = "button";
-  button.innerText = "Next";
-  button.style = "padding: 10px; border: 3px solid black;width: fit-content";
-  searchContainer.appendChild(button);
-
-
-
- //funzione print in gruppi da 10 
-
-  const impagination = () => {
-
-
-    const todoSortedEl = document.querySelectorAll(".todoSortedEl");
-    toArray = Array.from(todoSortedEl);
-
-    const GroupOfTen = [];
-
-    for (let i = 0; i < todoSortedEl.length; i++) {
-      if (i % 10 === 0) {
-        GroupOfTen.push(toArray.slice(i, i + 10));
-      }
-
-     const groupContainer = container.createElement('div')
-
-     GroupOfTen.forEach(todo => {
-
-      const todoId = groupContainer.createElement('span')
-      const todoTitle = groupContainer.createElement('span')
-      const todoCompleted = groupContainer.createElement('span')
-
-      groupContainer.appendChild(todoId,todoTitle,todoCompleted)
-
-     })
-
-    }
-
-
-
+    element.style.display = "none";
+  })
+  toArray.filter((div, i) => {
+    if(i >= (curPage - 1) * pageSize && i < curPage * pageSize) {
+    return true 
+  } 
   }
+  ).forEach((element) => {
+    const index = toArray.indexOf(element);
+    console.log(index);
+    element.style.display = "flex";
+  })
+}
 
-    button.addEventListener("click", impagination);
+searchInput.addEventListener("keyup", searchbyTitle);
+
+
+//funzione print in gruppi da 10
+
+
+const previousPage = () => {
+  if(curPage > 1) curPage--;
+  impagination();
+  ;
+}
+
+const nextPage =() => {
+  if((curPage * pageSize) < nameList.length) curPage++;
+  impagination();
+  ;
+}
+
+
+const impagination = () => {
+
+  const todoSortedEl = document.querySelectorAll(".todoSortedEl");
+  toArray = Array.from(todoSortedEl);
+  toArray.filter((div, i) => {
+    if(i >= (curPage - 1) * pageSize && i < curPage * pageSize) {
+    return true 
+  } else {div.style.display = "none";}
+  }
+  ).forEach((element, index) => {
+    element.style.display = "flex";
+  })
+}
+
+buttonNext.addEventListener("click", nextPage, false );
+buttonPrev.addEventListener("click", previousPage, false);
 // funzione per il sort con checkbox
 
- const checked = () => {
-   const todoEls = document.querySelectorAll(".todo-visible");
-   toArray = Array.from(todoEls);
-   toArray.filter((todoEl) => {
+const checked = () => {
+  const todoEls = document.querySelectorAll(".todoSortedEl");
+  toArray = Array.from(todoEls);
+  toArray.forEach((todoEl) => {
+    console.log(todoEl);
     if (selectCompleted.value === "Only completed") {
-      const onlyTrueEl = todoEl.querySelector(".todoCompletedProp");
-      console.log(onlyTrueEl);
-      if (onlyTrueEl.innerText === "true") {
-
-        todoEl.classList.remove("hidden");
-        todoEl.style.display = 'flex'
-
-      } else{
-
-        todoEl.classList.add("hidden");
-        todoEl.style.display = 'none'
-      }}
-    else if (selectCompleted.value ==="Only not completed") {
-      const onlyFalseEl = todoEl.querySelector(".todoCompletedProp");
-      console.log(onlyFalseEl);
-      if(onlyFalseEl.innerText === "false"){
-        todoEl.classList.remove("hidden");
-        todoEl.style.display = 'flex'
-
-      } else {
-        todoEl.style.display = 'none'
-        todoEl.classList.add("hidden");
+      const onlyTrueEl = todoEl.querySelectorAll(".todoCompletedProp");
+      onlyTrueEl.forEach((element) => {
+      if (element.innerText === "true") {
+        todoEl.style.display = "flex";
       }
-   }});
- };
+      else  if (element.innerText === "false"){
+        todoEl.style.display = "none";
+      } 
+      
+    })
+
+    
+    } else if (selectCompleted.value === "Only not completed") {
+      const onlyFalseEl = todoEl.querySelectorAll(".todoCompletedProp");
+      onlyFalseEl.forEach((element) => {
+      if (element.innerText === "false") {
+        todoEl.style.display = "flex";
+
+      } else  if (element.innerText === "true"){
+        todoEl.style.display = "flex"
+
+      }})
+    } else if (selectCompleted.value === "All") {
+       todoEl.style.display = "flex"
+    }
+    
+  });
+
+};
+
 onlytrue.addEventListener("click", checked);
 onlyFalse.addEventListener("click", checked);
-
-
+allSelected.addEventListener("click", checked);
 
 //sort titolo
 
@@ -218,31 +290,28 @@ onlyFalse.addEventListener("click", checked);
 //nameList
 
 const sorter = () => {
-    const todoEls = resultContainer.querySelectorAll(".todoSortedEl");
-    const toArray = Array.from(todoEls);
-    toArray.sort((a, b) => {
-        const todoTitleA = a.querySelector(".todoTitleProp").innerText;
-        const todoTitleB = b.querySelector(".todoTitleProp").innerText;
-        if (inputSelectSort.value === "crescente") {
+  const todoEls = resultContainer.querySelectorAll(".todoSortedEl");
+  const toArray = Array.from(todoEls);
+  toArray
+    .sort((a, b) => {
+      const todoTitleA = a.querySelector(".todoTitleProp").innerText;
+      const todoTitleB = b.querySelector(".todoTitleProp").innerText;
+      if (inputSelectSort.value === "crescente") {
         return todoTitleA.localeCompare(todoTitleB);
-        } else if (inputSelectSort.value === "decrescente") {
+      } else if (inputSelectSort.value === "decrescente") {
         return todoTitleB.localeCompare(todoTitleA);
-        } else if (inputSelectSort.value === "ID crescente") {
-        return a.querySelector(".todoIdProp").innerText.localeCompare(
-            b.querySelector(".todoIdProp").innerText
-        );
-        } else if (inputSelectSort.value === "ID decrescente") {
-        return b.querySelector(".todoIdProp").innerText.localeCompare(
-            a.querySelector(".todoIdProp").innerText
-        );
-        }
-    }).forEach((todoEl) => {
-        resultContainer.appendChild(todoEl);
+      } else if (inputSelectSort.value === "ID crescente") {
+        return a.querySelector(".todoIdProp").innerText - b.querySelector(".todoIdProp").innerText;
+      } else if (inputSelectSort.value === "ID decrescente") {
+        return b.querySelector(".todoIdProp").innerText - a.querySelector(".todoIdProp").innerText;
+      }
     })
+    .forEach((todoEl) => {
+      resultContainer.appendChild(todoEl);
+    });
 };
 
-optionSortIncrese.addEventListener('click',sorter)
-optionSortDecrese.addEventListener('click',sorter)
-optionSortIdIncrese.addEventListener('click',sorter)
-optionSortIdDecrese.addEventListener('click',sorter)
-
+optionSortIncrese.addEventListener("click", sorter);
+optionSortDecrese.addEventListener("click", sorter);
+optionSortIdIncrese.addEventListener("click", sorter);
+optionSortIdDecrese.addEventListener("click", sorter);
