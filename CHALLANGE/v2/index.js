@@ -153,17 +153,15 @@ printTodos().then( () => {
 
 // buttonView.addEventListener("click", printOften);
 
-//2. Visualizzazione di tutte le todo-list presenti a gruppi di 10,
-//con un sistema di impaginazione;
-
 // funzione per la ricerca
 
 const searchbyTitle = async (event) => {
   resultContainer.innerHTML = "";
   const text = event.target.value;
       nameList.forEach( (todo) => {
-        if (todo.title.toLowerCase().includes(text.toLowerCase()) || text === '' || todo.id.toString().includes(text)) {
-          const todoSortedEl = document.createElement("div");
+
+    if (todo.title.toLowerCase().includes(text.toLowerCase()) || text === '' || todo.id.toString().includes(text)) {
+    const todoSortedEl = document.createElement("div");
     todoSortedEl.classList.add("todoSortedEl");
     todoSortedEl.style = "justify-content:space-between;width:100%";
 
@@ -185,8 +183,9 @@ const searchbyTitle = async (event) => {
 
     todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
     resultContainer.append(todoSortedEl)
+
         }
-        })
+    })
 
   const todoSortedEl = document.querySelectorAll(".todoSortedEl");
   toArray = Array.from(todoSortedEl);
@@ -243,37 +242,110 @@ buttonPrev.addEventListener("click", previousPage, false);
 // funzione per il sort con checkbox
 
 const checked = () => {
-  const todoEls = document.querySelectorAll(".todoSortedEl");
-  toArray = Array.from(todoEls);
-  toArray.forEach((todoEl) => {
-    console.log(todoEl);
+  resultContainer.innerHTML = "";
+
+  nameList.filter((todoEl, i) => {
+
     if (selectCompleted.value === "Only completed") {
-      const onlyTrueEl = todoEl.querySelectorAll(".todoCompletedProp");
-      onlyTrueEl.forEach((element) => {
-      if (element.innerText === "true") {
-        todoEl.style.display = "flex";
+      const onlyTrueEl = todoEl.completed.toString() === "true";
+      console.log(onlyTrueEl);
+
+      if (onlyTrueEl) {
+        const todoSortedEl = document.createElement("div");
+    todoSortedEl.classList.add("todoSortedEl");
+    todoSortedEl.style = "justify-content:space-between;width:100%";
+
+    const toDoSortedIdProp = document.createElement("span");
+    toDoSortedIdProp.className = "todoIdProp";
+    toDoSortedIdProp.innerText = `${todoEl.id}`;
+
+    const toDoSortedTitleProp = document.createElement("span");
+    toDoSortedTitleProp.className = "todoTitleProp";
+    toDoSortedTitleProp.innerText = `${todoEl.title}'`;
+
+    const toDoSortedCompletedProp = document.createElement("span");
+    toDoSortedCompletedProp.className = "todoCompletedProp";
+    toDoSortedCompletedProp.innerText = `${todoEl.completed}`;
+
+    const span = document.querySelectorAll(".todoProp");
+    span.forEach((element) => {
+      element.style = "padding:10px";})
+
+    todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
+    resultContainer.append(todoSortedEl)
       }
-      else  if (element.innerText === "false"){
-        todoEl.style.display = "none";
-      } 
-      
-    })
+    } 
 
-    
-    } else if (selectCompleted.value === "Only not completed") {
-      const onlyFalseEl = todoEl.querySelectorAll(".todoCompletedProp");
-      onlyFalseEl.forEach((element) => {
-      if (element.innerText === "false") {
-        todoEl.style.display = "flex";
+    else if (selectCompleted.value === "Only not completed") 
+    {
+      const onlyFalseEl = todoEl.completed.toString() === "false";
+      console.log(onlyFalseEl);
+      if (onlyFalseEl) {
 
-      } else  if (element.innerText === "true"){
-        todoEl.style.display = "flex"
+    const todoSortedEl = document.createElement("div");
+    todoSortedEl.classList.add("todoSortedEl");
+    todoSortedEl.style = "justify-content:space-between;width:100%";
 
-      }})
-    } else if (selectCompleted.value === "All") {
-       todoEl.style.display = "flex"
+    const toDoSortedIdProp = document.createElement("span");
+    toDoSortedIdProp.className = "todoIdProp";
+    toDoSortedIdProp.innerText = `${todoEl.id}`;
+
+    const toDoSortedTitleProp = document.createElement("span");
+    toDoSortedTitleProp.className = "todoTitleProp";
+    toDoSortedTitleProp.innerText = `${todoEl.title}'`;
+
+    const toDoSortedCompletedProp = document.createElement("span");
+    toDoSortedCompletedProp.className = "todoCompletedProp";
+    toDoSortedCompletedProp.innerText = `${todoEl.completed}`;
+
+    const span = document.querySelectorAll(".todoProp");
+    span.forEach((element) => {
+      element.style = "padding:10px";})
+
+    todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
+    resultContainer.append(todoSortedEl)
+      }
+    } 
+    else if (selectCompleted.value === "All") {
+      const todoSortedEl = document.createElement("div");
+      todoSortedEl.classList.add("todoSortedEl");
+      todoSortedEl.style = "justify-content:space-between;width:100%";
+  
+      const toDoSortedIdProp = document.createElement("span");
+      toDoSortedIdProp.className = "todoIdProp";
+      toDoSortedIdProp.innerText = `${todoEl.id}`;
+  
+      const toDoSortedTitleProp = document.createElement("span");
+      toDoSortedTitleProp.className = "todoTitleProp";
+      toDoSortedTitleProp.innerText = `${todoEl.title}'`;
+  
+      const toDoSortedCompletedProp = document.createElement("span");
+      toDoSortedCompletedProp.className = "todoCompletedProp";
+      toDoSortedCompletedProp.innerText = `${todoEl.completed}`;
+  
+      const span = document.querySelectorAll(".todoProp");
+      span.forEach((element) => {
+        element.style = "padding:10px";})
+  
+      todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
+      resultContainer.append(todoSortedEl)
     }
-    
+
+  const todoSortedEl = document.querySelectorAll(".todoSortedEl");
+  toArray = Array.from(todoSortedEl);
+  todoSortedEl.forEach((element) => {
+    element.style.display = "none";
+  })
+  toArray.filter((div, i) => {
+    if(i >= (curPage - 1) * pageSize && i < curPage * pageSize) {
+    return true 
+  } 
+  }
+  ).forEach((element) => {
+    const index = toArray.indexOf(element);
+    console.log(index);
+    element.style.display = "flex";
+  })
   });
 
 };
