@@ -1,0 +1,6 @@
+
+@mixin flex($dir,$jc,$ai){
+    flex-direction: $dir;
+    justify-content: $jc;
+    align-items: $ai;
+  }

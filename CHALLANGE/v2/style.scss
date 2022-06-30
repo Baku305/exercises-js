@@ -1,60 +1,208 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@400;500;600&display=swap');
-
-*{
-    margin : 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Quicksand', sans-serif;
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@400;500;600&display=swap");
+@import "mixin/variables";
+@import "mixin/mixin.scss";
+@import "mixin/_button.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
 }
 
-html{
-    font-size: 10px;
+html {
+  font-size: 10px;
 }
 
+body {
+  display: flex;
+  @include flex(column, center, center);
+}
 
-#container{
-    margin-top: 20px;
-    width: 100%;
-    height: 500px;
+h1{
+    font-size: 5rem;
+    font-weight: 700;
+    color: $secondaryColor;
+    margin-bottom: 1rem;
+    text-shadow: 2 2 10px $smoke;
+}
+
+h3{
+    font-size: 2rem;
+    font-weight: 700;
+    color: $secondaryColor;
+    margin-bottom: 1rem;
+    text-shadow: 2 2 10px $water;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 14rem;
+    transform: rotate(2deg);
+}
+
+label{
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: $secondaryColor;
+    margin-bottom: 1rem;
+    text-shadow: 2 2 10px $water;
+    position: absolute;
+    z-index: 3;
+
+    &.labelCheck{
+        top: -2rem;
+        left: 36.5rem;
+        transform: rotate(-1deg)
+    }
+
+    &.labelSort{
+        left: 63rem;
+        top:-2rem;
+        transform: rotate(0deg)
+}
+
+}
+
+#container {
+  margin-top: 1rem;
+  width: 80rem;
+  height: 60rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0px 0px 0.6px rgba(0, 0, 0, 0.103),
+    0px 0px 1.3px rgba(0, 0, 0, 0.119), 0px 0px 2.4px rgba(0, 0, 0, 0.143),
+    0px 0px 4.2px rgba(0, 0, 0, 0.176), 0px 0px 8.1px rgba(0, 0, 0, 0.215),
+    0px 0px 21px rgba(0, 0, 0, 0.26);
+    background-color: $smoke;
+
+
+
+  .searchContainer {
+    height: 5rem;
+    width: 8rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
-    flex-direction: column;
     align-items: center;
-    .searchContainer{
+    @include flex(row, space-around, center);
+    width: 100%;
+    position: relative;
 
+    .searchInput {
+      z-index: 3;
+      @extend %button-drow-style;
+      background-color: #fff;
+      border: 1px solid $secondaryColor;
+      left: 3rem;
+      top: 2rem;
+      width: 20rem;
+      height: 4rem;
+      font-size: 2rem
     }
-    .resultContainer{
+
+    select {
+        @extend %button-drow-style;
+        transform: rotate(0deg);
+        color: #fff;
+        font-size: 1.5rem;
+        padding-left: .5rem;
+      option {
+        @extend %button-drow-style;
+        color: #fff;
+        font-size: 1.5rem;
+        text-align: start;
+        padding-left: 0;
+        margin-left: 0;
+      }
+    }
+  }
+
+
+    .resultContainer {
         width: 100%;
         height: 100%;
-        background-color: cornflowerblue;
-        display: flex;
-
-        .todoSortedEl{
-            margin:10px;
-            .todoIdProd{
+        background-color: $smoke;
+        font-size: 1.5rem;
+        font-weight: 500;
+        transform: rotate(-1deg);
+        border: 2px solid $smoke;
+        padding: 1rem;
+        padding-top: 2rem;
+        box-shadow:
+  0px 13.8px 3.3px rgba(0, 0, 0, 0.058),
+  0px 17.3px 8px rgba(0, 0, 0, 0.087),
+  0px 19.5px 15px rgba(0, 0, 0, 0.111),
+  0px 21.2px 26.8px rgba(0, 0, 0, 0.132),
+  0px 22.7px 50.1px rgba(0, 0, 0, 0.154),
+  0px 24px 120px rgba(0, 0, 0, 0.19)
+;
+    
+        .svg-image{
+            position: absolute;
+            width: 12rem;
+            right: 7rem;
+            bottom: -27rem;
+        } 
+        .todoSortedEl {
+          padding: 10px;
+          width: 100%;
+          @include flex(row, space-between, center);
+          box-shadow: inset 0 0 0 0 $primeColor;
+          color: $primeColor;
+          padding: 1rem;
+          transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    
+    
+          &:hover{
+            box-shadow: inset 100px 0 0 0 $secondaryColor;
+            color: white;
+          }
+    
+    
+          .todoIdProd {
             padding: 10px;
-            margin:10px;
-            }
-            .todoTitleProd{
+          }
+          .todoTitleProd {
             padding: 10px;
-            margin:10px;
-            }
-            .todoCompletedProv{
+          }
+          .todoCompletedProv {
             padding: 10px;
-            margin:10px;
-            }
+          }
         }
-    }
-    .buttonContainer{
-        padding: 10px;
-            margin:10px;
-    }
-} 
+        
+      }
 
-.hidden{
-    display: none;
+
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .button {
+      @extend %button-drow-style;
+      color: #fff;
+      width: 10rem;
+      height: 4rem;
+      font-size: 2rem;
+    }
+
+    #buttonPrev {
+      right: 1.5rem;
+      top: 1.5rem;
+    }
+
+    #buttonNext {
+      left: 1.5rem;
+      top: 1.5rem;
+    }
+  }
 }
 
-.todo-visible{
-    display: flex;
+.hidden {
+  display: none;
+}
+
+.todo-visible {
+  display: flex;
 }

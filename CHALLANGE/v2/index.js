@@ -30,6 +30,9 @@ let arr = getNames().then(
 const searchContainer = document.querySelector(".searchContainer");
 //search input
 const searchInput = document.querySelector(".searchInput");
+
+//wrapper impaginazione
+const Wrapper = document.querySelector(".wrapper");
 //wrapper risultato
 const resultContainer = document.querySelector(".resultContainer");
 
@@ -37,12 +40,12 @@ const resultContainer = document.querySelector(".resultContainer");
 const selectCompleted = document.querySelector(".completedCheck");
 //onlyTrue option
 const onlytrue = document.createElement("option");
-onlytrue.innerText = "Only completed";
+onlytrue.innerText = "completed";
 selectCompleted.appendChild(onlytrue);
 
 //onlyfalse
 const onlyFalse = document.createElement("option");
-onlyFalse.innerText = "Only not completed";
+onlyFalse.innerText = "not completed";
 selectCompleted.appendChild(onlyFalse);
 
 const allSelected = document.createElement("option");
@@ -68,29 +71,35 @@ const optionSortIdDecrese = document.createElement("option");
 optionSortIdDecrese.innerText = "ID decrescente";
 inputSelectSort.appendChild(optionSortIdDecrese);
 
+const optionAll = document.querySelectorAll("option");
+optionAll.forEach((element) => {
+  element.classList.add("optionSelect");
+})
+//container bottoni
+const buttonContainer = document.querySelector(".buttonContainer");
+
 
 //boottone prev
 const buttonPrev = document.createElement("button");
 buttonPrev.className = "button";
+buttonPrev.id = "buttonPrev";
 buttonPrev.innerText = "Prev";
-searchContainer.appendChild(buttonPrev);
-//bottone view
-// const buttonView = document.createElement("button");
-// buttonView.className = "button";
-// buttonView.innerText = "View";
-// searchContainer.appendChild(buttonView);
+buttonPrev.role="button"
+buttonContainer.appendChild(buttonPrev);
 
 //bottone next
 const buttonNext = document.createElement("button");
 buttonNext.className = "button";
+buttonNext.id = "buttonNext";
 buttonNext.innerText = "Next";
-searchContainer.appendChild(buttonNext);
+buttonNext.role="button"
+buttonContainer.appendChild(buttonNext);
 
 //lista elementi
 
 const pageSize = 10;
 let curPage = 1;
-let counterPage = 1
+
 
 const printTodos = async () => {
 
@@ -100,7 +109,6 @@ const printTodos = async () => {
     const todoSortedEl = document.createElement("div");
     todoSortedEl.classList.add("todoSortedEl");
     todoSortedEl.classList.add("hidden");
-    todoSortedEl.style = "justify-content:space-between;width:100%";
 
     const toDoSortedIdProp = document.createElement("span");
     toDoSortedIdProp.className = "todoIdProp";
@@ -115,9 +123,6 @@ const printTodos = async () => {
     toDoSortedCompletedProp.innerText = `${todo.completed}`;
 
     const span = document.querySelectorAll(".todoProp");
-    span.forEach((element) => {
-      element.style = "padding:10px";
-    });
 
     todoSortedEl.append(
       toDoSortedIdProp,
@@ -151,19 +156,17 @@ printTodos().then( () => {
   })
 })
 
-// buttonView.addEventListener("click", printOften);
-
 // funzione per la ricerca
 
 const searchbyTitle = async (event) => {
   resultContainer.innerHTML = "";
   const text = event.target.value;
-      nameList.forEach( (todo) => {
+    nameList.forEach( (todo) => {
 
     if (todo.title.toLowerCase().includes(text.toLowerCase()) || text === '' || todo.id.toString().includes(text)) {
     const todoSortedEl = document.createElement("div");
     todoSortedEl.classList.add("todoSortedEl");
-    todoSortedEl.style = "justify-content:space-between;width:100%";
+
 
     const toDoSortedIdProp = document.createElement("span");
     toDoSortedIdProp.className = "todoIdProp";
@@ -178,8 +181,6 @@ const searchbyTitle = async (event) => {
     toDoSortedCompletedProp.innerText = `${todo.completed}`;
 
     const span = document.querySelectorAll(".todoProp");
-    span.forEach((element) => {
-      element.style = "padding:10px";})
 
     todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
     resultContainer.append(todoSortedEl)
@@ -207,7 +208,7 @@ const searchbyTitle = async (event) => {
 searchInput.addEventListener("keyup", searchbyTitle);
 
 
-//funzione print in gruppi da 10
+//funzione print in gruppi da 10 e bottoni
 
 
 const previousPage = () => {
@@ -217,7 +218,9 @@ const previousPage = () => {
 }
 
 const nextPage =() => {
-  if((curPage * pageSize) < nameList.length) curPage++;
+  const todoSortedEl = document.querySelectorAll(".todoSortedEl");
+  const toArray = Array.from(todoSortedEl);
+  if((curPage * pageSize) < toArray.length) curPage++;
   impagination();
   ;
 }
@@ -242,18 +245,18 @@ buttonPrev.addEventListener("click", previousPage, false);
 // funzione per il sort con checkbox
 
 const checked = () => {
+
   resultContainer.innerHTML = "";
 
   nameList.filter((todoEl, i) => {
 
-    if (selectCompleted.value === "Only completed") {
+    if (selectCompleted.value === "completed") {
       const onlyTrueEl = todoEl.completed.toString() === "true";
-      console.log(onlyTrueEl);
+      console.log(`falso ${onlyTrueEl}`);
 
       if (onlyTrueEl) {
         const todoSortedEl = document.createElement("div");
     todoSortedEl.classList.add("todoSortedEl");
-    todoSortedEl.style = "justify-content:space-between;width:100%";
 
     const toDoSortedIdProp = document.createElement("span");
     toDoSortedIdProp.className = "todoIdProp";
@@ -268,15 +271,13 @@ const checked = () => {
     toDoSortedCompletedProp.innerText = `${todoEl.completed}`;
 
     const span = document.querySelectorAll(".todoProp");
-    span.forEach((element) => {
-      element.style = "padding:10px";})
 
     todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
     resultContainer.append(todoSortedEl)
       }
     } 
 
-    else if (selectCompleted.value === "Only not completed") 
+    else if (selectCompleted.value === "not completed") 
     {
       const onlyFalseEl = todoEl.completed.toString() === "false";
       console.log(onlyFalseEl);
@@ -284,7 +285,6 @@ const checked = () => {
 
     const todoSortedEl = document.createElement("div");
     todoSortedEl.classList.add("todoSortedEl");
-    todoSortedEl.style = "justify-content:space-between;width:100%";
 
     const toDoSortedIdProp = document.createElement("span");
     toDoSortedIdProp.className = "todoIdProp";
@@ -298,9 +298,6 @@ const checked = () => {
     toDoSortedCompletedProp.className = "todoCompletedProp";
     toDoSortedCompletedProp.innerText = `${todoEl.completed}`;
 
-    const span = document.querySelectorAll(".todoProp");
-    span.forEach((element) => {
-      element.style = "padding:10px";})
 
     todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
     resultContainer.append(todoSortedEl)
@@ -309,7 +306,6 @@ const checked = () => {
     else if (selectCompleted.value === "All") {
       const todoSortedEl = document.createElement("div");
       todoSortedEl.classList.add("todoSortedEl");
-      todoSortedEl.style = "justify-content:space-between;width:100%";
   
       const toDoSortedIdProp = document.createElement("span");
       toDoSortedIdProp.className = "todoIdProp";
@@ -322,10 +318,6 @@ const checked = () => {
       const toDoSortedCompletedProp = document.createElement("span");
       toDoSortedCompletedProp.className = "todoCompletedProp";
       toDoSortedCompletedProp.innerText = `${todoEl.completed}`;
-  
-      const span = document.querySelectorAll(".todoProp");
-      span.forEach((element) => {
-        element.style = "padding:10px";})
   
       todoSortedEl.append(toDoSortedIdProp, toDoSortedTitleProp, toDoSortedCompletedProp);
       resultContainer.append(todoSortedEl)
@@ -381,6 +373,7 @@ const sorter = () => {
     .forEach((todoEl) => {
       resultContainer.appendChild(todoEl);
     });
+    impagination()
 };
 
 optionSortIncrese.addEventListener("click", sorter);
