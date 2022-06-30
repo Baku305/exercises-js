@@ -22,7 +22,6 @@ h1{
     font-size: 5rem;
     font-weight: 700;
     color: $secondaryColor;
-    margin-bottom: 1rem;
     text-shadow: 2 2 10px $smoke;
 }
 
@@ -32,11 +31,7 @@ h3{
     color: $secondaryColor;
     margin-bottom: 1rem;
     text-shadow: 2 2 10px $water;
-    position: absolute;
-    z-index: 3;
     top: 0;
-    left: 14rem;
-    transform: rotate(2deg);
 }
 
 label{
@@ -45,28 +40,24 @@ label{
     color: $secondaryColor;
     margin-bottom: 1rem;
     text-shadow: 2 2 10px $water;
-    position: absolute;
-    z-index: 3;
 
     &.labelCheck{
         top: -2rem;
         left: 36.5rem;
-        transform: rotate(-1deg)
     }
 
     &.labelSort{
         left: 63rem;
         top:-2rem;
-        transform: rotate(0deg)
 }
 
 }
 
 #container {
   margin-top: 1rem;
-  width: 80rem;
-  height: 60rem;
   display: flex;
+  height: max-content;
+  width: 80rem;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 0.6px rgba(0, 0, 0, 0.103),
@@ -74,27 +65,24 @@ label{
     0px 0px 4.2px rgba(0, 0, 0, 0.176), 0px 0px 8.1px rgba(0, 0, 0, 0.215),
     0px 0px 21px rgba(0, 0, 0, 0.26);
     background-color: $smoke;
+    padding: 2rem;
 
 
 
   .searchContainer {
-    height: 5rem;
-    width: 8rem;
+    width: 100%;
     padding: 1rem;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    @include flex(row, space-around, center);
+    @include flex(#add-row, space-around, center);
     width: 100%;
     position: relative;
+
 
     .searchInput {
       z-index: 3;
       @extend %button-drow-style;
       background-color: #fff;
       border: 1px solid $secondaryColor;
-      left: 3rem;
-      top: 2rem;
       width: 20rem;
       height: 4rem;
       font-size: 2rem
@@ -106,6 +94,7 @@ label{
         color: #fff;
         font-size: 1.5rem;
         padding-left: .5rem;
+        z-index: 3;
       option {
         @extend %button-drow-style;
         color: #fff;
@@ -117,17 +106,21 @@ label{
     }
   }
 
+  .contentContainer{
+    display: flex;
+    @include flex(column, scenter, center);
+    width: 100%;
+  }
 
     .resultContainer {
+        position: relative;
         width: 100%;
         height: 100%;
         background-color: $smoke;
         font-size: 1.5rem;
         font-weight: 500;
-        transform: rotate(-1deg);
         border: 2px solid $smoke;
-        padding: 1rem;
-        padding-top: 2rem;
+        padding: 3rem;
         box-shadow:
   0px 13.8px 3.3px rgba(0, 0, 0, 0.058),
   0px 17.3px 8px rgba(0, 0, 0, 0.087),
@@ -136,20 +129,13 @@ label{
   0px 22.7px 50.1px rgba(0, 0, 0, 0.154),
   0px 24px 120px rgba(0, 0, 0, 0.19)
 ;
-    
-        .svg-image{
-            position: absolute;
-            width: 12rem;
-            right: 7rem;
-            bottom: -27rem;
-        } 
+
         .todoSortedEl {
-          padding: 10px;
+          padding: 1rem 4rem;
           width: 100%;
           @include flex(row, space-between, center);
           box-shadow: inset 0 0 0 0 $primeColor;
           color: $primeColor;
-          padding: 1rem;
           transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
     
     
@@ -178,6 +164,8 @@ label{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    bottom: 5rem;
+    position: absolute;
 
     .button {
       @extend %button-drow-style;
@@ -188,15 +176,64 @@ label{
     }
 
     #buttonPrev {
-      right: 1.5rem;
-      top: 1.5rem;
+        top: 1rem;
+      
+  &:hover {
+    box-shadow: inset 100px 0 0 0 $secondaryColor;
+    color: white;
+    transform: translate(-2px);
+  }
     }
 
     #buttonNext {
-      left: 1.5rem;
-      top: 1.5rem;
+        top: 1rem;
+        right: 7rem;
+  &:hover {
+    box-shadow: inset 100px 0 0 0 $secondaryColor;
+    color: white;
+    transform: translate(2px);
+  }
     }
   }
+
+  .counterContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    background-color: $smoke;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: 2px solid $smoke;
+    padding: 1rem;
+    padding-top: 2rem;
+  }
+    .numberContainer{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 5rem;
+        background-color: $smoke;
+        font-size: 1.5rem;
+        font-weight: 500;
+        border: 2px solid $smoke;
+        padding: 1rem;
+        padding-top: 2rem;
+
+
+        .number{
+            padding: .5rem;
+            cursor: pointer;
+
+            &:hover{
+                box-shadow: inset 100px 0 0 0 $secondaryColor;
+                color: white;
+                transition: .2s ease-in-out;
+            }
+        }
+    }
 }
 
 .hidden {

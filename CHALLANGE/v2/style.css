@@ -17,7 +17,6 @@
   text-decoration-thickness: auto;
   position: relative;
   cursor: pointer;
-  transform: rotate(-2deg);
   -moz-user-select: none;
    -ms-user-select: none;
        user-select: none;
@@ -26,19 +25,6 @@
 }
 #container .buttonContainer .button:focus, #container .searchContainer select option:focus, #container .searchContainer select:focus, #container .searchContainer .searchInput:focus {
   outline: 0;
-}
-#container .buttonContainer .button:after, #container .searchContainer select option:after, #container .searchContainer select:after, #container .searchContainer .searchInput:after {
-  content: "";
-  position: absolute;
-  border: 1px solid #000000;
-  bottom: 4px;
-  left: 4px;
-  width: calc(100% - 1px);
-  height: calc(100% - 1px);
-}
-#container .buttonContainer .button:hover:after, #container .searchContainer select option:hover:after, #container .searchContainer select:hover:after, #container .searchContainer .searchInput:hover:after {
-  bottom: 2px;
-  left: 2px;
 }
 
 * {
@@ -63,7 +49,6 @@ h1 {
   font-size: 5rem;
   font-weight: 700;
   color: #3c6382;
-  margin-bottom: 1rem;
   text-shadow: 2 2 10px #ecf0f1;
 }
 
@@ -73,11 +58,7 @@ h3 {
   color: #3c6382;
   margin-bottom: 1rem;
   text-shadow: 2 2 10px #38ada9;
-  position: absolute;
-  z-index: 3;
   top: 0;
-  left: 14rem;
-  transform: rotate(2deg);
 }
 
 label {
@@ -86,38 +67,34 @@ label {
   color: #3c6382;
   margin-bottom: 1rem;
   text-shadow: 2 2 10px #38ada9;
-  position: absolute;
-  z-index: 3;
 }
 label.labelCheck {
   top: -2rem;
   left: 36.5rem;
-  transform: rotate(-1deg);
 }
 label.labelSort {
   left: 63rem;
   top: -2rem;
-  transform: rotate(0deg);
 }
 
 #container {
   margin-top: 1rem;
-  width: 80rem;
-  height: 60rem;
   display: flex;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+  width: 80rem;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 0.6px rgba(0, 0, 0, 0.103), 0px 0px 1.3px rgba(0, 0, 0, 0.119), 0px 0px 2.4px rgba(0, 0, 0, 0.143), 0px 0px 4.2px rgba(0, 0, 0, 0.176), 0px 0px 8.1px rgba(0, 0, 0, 0.215), 0px 0px 21px rgba(0, 0, 0, 0.26);
   background-color: #ecf0f1;
+  padding: 2rem;
 }
 #container .searchContainer {
-  height: 5rem;
-  width: 8rem;
+  width: 100%;
   padding: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: #add-row;
   justify-content: space-around;
   align-items: center;
   width: 100%;
@@ -127,8 +104,6 @@ label.labelSort {
   z-index: 3;
   background-color: #fff;
   border: 1px solid #3c6382;
-  left: 3rem;
-  top: 2rem;
   width: 20rem;
   height: 4rem;
   font-size: 2rem;
@@ -138,6 +113,7 @@ label.labelSort {
   color: #fff;
   font-size: 1.5rem;
   padding-left: 0.5rem;
+  z-index: 3;
 }
 #container .searchContainer select option {
   color: #fff;
@@ -146,33 +122,32 @@ label.labelSort {
   padding-left: 0;
   margin-left: 0;
 }
+#container .contentContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: scenter;
+  align-items: center;
+  width: 100%;
+}
 #container .resultContainer {
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: #ecf0f1;
   font-size: 1.5rem;
   font-weight: 500;
-  transform: rotate(-1deg);
   border: 2px solid #ecf0f1;
-  padding: 1rem;
-  padding-top: 2rem;
+  padding: 3rem;
   box-shadow: 0px 13.8px 3.3px rgba(0, 0, 0, 0.058), 0px 17.3px 8px rgba(0, 0, 0, 0.087), 0px 19.5px 15px rgba(0, 0, 0, 0.111), 0px 21.2px 26.8px rgba(0, 0, 0, 0.132), 0px 22.7px 50.1px rgba(0, 0, 0, 0.154), 0px 24px 120px rgba(0, 0, 0, 0.19);
 }
-#container .resultContainer .svg-image {
-  position: absolute;
-  width: 12rem;
-  right: 7rem;
-  bottom: -27rem;
-}
 #container .resultContainer .todoSortedEl {
-  padding: 10px;
+  padding: 1rem 4rem;
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   box-shadow: inset 0 0 0 0 #0a3d62;
   color: #0a3d62;
-  padding: 1rem;
   transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 #container .resultContainer .todoSortedEl:hover {
@@ -192,6 +167,8 @@ label.labelSort {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  bottom: 5rem;
+  position: absolute;
 }
 #container .buttonContainer .button {
   color: #fff;
@@ -200,12 +177,56 @@ label.labelSort {
   font-size: 2rem;
 }
 #container .buttonContainer #buttonPrev {
-  right: 1.5rem;
-  top: 1.5rem;
+  top: 1rem;
+}
+#container .buttonContainer #buttonPrev:hover {
+  box-shadow: inset 100px 0 0 0 #3c6382;
+  color: white;
+  transform: translate(-2px);
 }
 #container .buttonContainer #buttonNext {
-  left: 1.5rem;
-  top: 1.5rem;
+  top: 1rem;
+  right: 7rem;
+}
+#container .buttonContainer #buttonNext:hover {
+  box-shadow: inset 100px 0 0 0 #3c6382;
+  color: white;
+  transform: translate(2px);
+}
+#container .counterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  background-color: #ecf0f1;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: 2px solid #ecf0f1;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+#container .numberContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  background-color: #ecf0f1;
+  font-size: 1.5rem;
+  font-weight: 500;
+  border: 2px solid #ecf0f1;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+#container .numberContainer .number {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+#container .numberContainer .number:hover {
+  box-shadow: inset 100px 0 0 0 #3c6382;
+  color: white;
+  transition: 0.2s ease-in-out;
 }
 
 .hidden {
