@@ -235,4 +235,11 @@ label.labelSort {
 
 .todo-visible {
   display: flex;
+}
+
+.active {
+  box-shadow: inset 100px 0 0 0 #3c6382;
+  color: white;
+  transform: translate(0px, -4px);
+  transition: 0.5s;
 }/*# sourceMappingURL=style.css.map */

@@ -122,6 +122,9 @@ const pagingCounter = async () => {
     number.classList.add("number");
     number.innerText = i;
     numberContainer.appendChild(number);
+    if (i === curPage) {
+      number.classList.add("active");
+    }
   }
 
   counterContainer.appendChild(numberContainer);
@@ -133,8 +136,8 @@ const pagingCounter = async () => {
     }
   });
   resultContainer.append(counterContainer);
-  console.log("esisto");
 };
+
 
 // funzione per la ricerca
 
@@ -144,8 +147,7 @@ const searchbyTitle = async (event) => {
   nameList.forEach((todo) => {
     if (
       todo.title.toLowerCase().includes(text.toLowerCase()) ||
-      text === "" ||
-      todo.id.toString().includes(text)
+      text === ""
     ) {
       Maker(todo);
     }
@@ -189,6 +191,7 @@ const nextPage = () => {
 };
 
 const impagination = () => {
+
   const todoSortedEl = document.querySelectorAll(".todoSortedEl");
   toArray = Array.from(todoSortedEl);
   toArray
@@ -201,11 +204,27 @@ const impagination = () => {
     })
     .forEach((element, index) => {
       element.style.display = "flex";
+      
     });
+
+    const number = document.querySelectorAll(".number");
+    const numberToArray = Array.from(number);
+
+  numberToArray.forEach((element) => {
+    if (element.innerText === curPage.toString()) {
+      element.classList.add("active");
+    } else {
+      element.classList.remove("active");
+    }
+  })
 };
+
 
 buttonNext.addEventListener("click", nextPage, false);
 buttonPrev.addEventListener("click", previousPage, false);
+
+
+
 // funzione per il sort con checkbox
 
 const checked = () => {
